@@ -1,0 +1,5 @@
+asu_stack:
+    resource: "@ASUStackBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
