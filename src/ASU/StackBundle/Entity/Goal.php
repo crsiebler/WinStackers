@@ -45,7 +45,7 @@ class Goal {
      * @var Win
      *
      * @ORM\ManyToOne(
-     *      targetEntity="ASU\StackerBundle\Entity\Win",
+     *      targetEntity="ASU\StackBundle\Entity\Win",
      *      inversedBy="goals",
      *      fetch="EAGER"
      * )

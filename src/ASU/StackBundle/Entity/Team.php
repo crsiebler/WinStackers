@@ -58,7 +58,7 @@ class Team {
      * @var Stacker
      *
      * @ORM\ManyToOne(
-     *      targetEntity="ASU\StackerBundle\Entity\Stacker",
+     *      targetEntity="ASU\StackBundle\Entity\Stacker",
      *      fetch="LAZY"
      * )
      * @ORM\JoinColumn(name="creator_id", referencedColumnName="id")
@@ -71,7 +71,41 @@ class Team {
      * @ORM\Column(name="genre", type="smallint", nullable=false)
      */
     private $genre;
+    
+    /**
+     * @var ArrayCollection<Stacker>
+     * 
+     * @ORM\ManyToMany(
+     *      targetEntity="ASU\StackBundle\Entity\Stacker",
+     *      inversedBy="teams",
+     *      fetch="LAZY"
+     * )
+     * @ORM\JoinTable()
+     */
+    private $members;
 
+    /**
+     * @var ArrayCollection<Win>
+     * 
+     * @ORM\OneToMany(
+     *      targetEntity="ASU\StackBundle\Entity\Win",
+     *      mappedBy="stacker",
+     *      cascade={"ALL"},
+     *      orphanRemoval=true,
+     *      fetch="LAZY"
+     * )
+     * @ORM\OrderBy({"id" = "DESC"})
+     */
+    private $wins;
+    
+    /**
+     * Constructor
+     */
+    public function __construct() {
+        $this->wins = new ArrayCollection();
+        $this->members = new ArrayCollection();
+    }
+    
     /**
      * Get id
      *
@@ -168,7 +202,7 @@ class Team {
     /**
      * Set creator
      *
-     * @param \stdClass $creator
+     * @param Stacker $creator
      * @return Team
      */
     public function setCreator($creator) {
@@ -180,7 +214,7 @@ class Team {
     /**
      * Get creator
      *
-     * @return \stdClass 
+     * @return Stacker
      */
     public function getCreator() {
         return $this->creator;
@@ -189,7 +223,7 @@ class Team {
     /**
      * Set genre
      *
-     * @param \integer $genre
+     * @param integer $genre
      * @return Team
      */
     public function setGenre($genre) {
@@ -219,4 +253,25 @@ class Team {
         return $this->genre;
     }
 
+    /**
+     * Get wins
+     * 
+     * @return type
+     */
+    public function getWins() {
+        return $this->wins;
+    }
+
+    /**
+     * Set wins
+     * 
+     * @param ArrayCollection<Win> $wins
+     * @return Stacker
+     */
+    public function setWins($wins) {
+        $this->wins = $wins;
+        
+        return $this;
+    }
+    
 }

@@ -2,6 +2,7 @@
 
 namespace ASU\StackBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -67,7 +68,7 @@ class Win {
      * @var Stacker
      *
      * @ORM\ManyToOne(
-     *      targetEntity="ASU\StackerBundle\Entity\Stacker",
+     *      targetEntity="ASU\StackBundle\Entity\Stacker",
      *      inversedBy="wins",
      *      fetch="LAZY"
      * )
@@ -78,7 +79,7 @@ class Win {
      * @var Team
      *
      * @ORM\ManyToOne(
-     *      targetEntity="ASU\StackerBundle\Entity\Team",
+     *      targetEntity="ASU\StackBundle\Entity\Team",
      *      inversedBy="wins",
      *      fetch="LAZY"
      * )
@@ -93,15 +94,22 @@ class Win {
     private $category;
     
     /**
-     * @var ArrayList<Goal>
+     * @var ArrayCollection<Goal>
      * 
      * @ORM\OneToMany(
-     *      targetEntity="ASU\StackerBundle\Entity\Goal",
+     *      targetEntity="ASU\StackBundle\Entity\Goal",
      *      mappedBy="win",
      *      fetch="EAGER"
      * )
      */
     private $goals;
+    
+    /**
+     * Constructor
+     */
+    public function __construct() {
+        $this->goals = new ArrayCollection();
+    }
     
     /**
      * Get id
@@ -220,7 +228,7 @@ class Win {
     /**
      * Set stacker
      *
-     * @param \stdClass $stacker
+     * @param Stacker $stacker
      * @return Win
      */
     public function setStacker($stacker) {
@@ -297,7 +305,7 @@ class Win {
     /**
      * Set goals
      * 
-     * @return ArrayList<Goal>
+     * @return ArrayCollection<Goal>
      */
     function getGoals() {
         return $this->goals;
@@ -306,7 +314,7 @@ class Win {
     /**
      * set goals
      * 
-     * @param ArrayList<Goal> $goals
+     * @param ArrayCollection<Goal> $goals
      * @return Win
      */
     function setGoals($goals) {
