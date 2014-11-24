@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Goal
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="ASU\StackBundle\Entity\GoalRepository")
+ * @ORM\Entity(repositoryClass="ASU\StackBundle\Repository\GoalRepository")
  */
 class Goal {
 
@@ -31,14 +31,25 @@ class Goal {
     /**
      * @var string
      *
-     * @ORM\Column(name="percentComplete", type="decimal")
+     * @ORM\Column(
+     *      name="percent_complete",
+     *      type="decimal",
+     *      scale=2,
+     *      precision=3,
+     *      nullable=false
+     * )
      */
     private $percentComplete;
 
     /**
-     * @var \stdClass
+     * @var Win
      *
-     * @ORM\Column(name="win", type="object")
+     * @ORM\ManyToOne(
+     *      targetEntity="ASU\StackerBundle\Entity\Win",
+     *      inversedBy="goals",
+     *      fetch="EAGER"
+     * )
+     * @ORM\JoinColumn(name="win_id", referencedColumnName="id")
      */
     private $win;
 

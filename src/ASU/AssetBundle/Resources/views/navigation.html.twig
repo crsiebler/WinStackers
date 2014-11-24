@@ -1,0 +1,5 @@
+<ul class="mainNav" data-open-subnavs="multi">
+    <li class="{% if 'asu_asset_default_index' in app.request.attributes.get('_route') %}active open{% endif %}">
+        <a href="{{ path('asu_asset_default_index') }}"><i class="icon-dashboard icon-white"></i><span>Dashboard</span></a>
+    </li>
+</ul>

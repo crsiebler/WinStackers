@@ -8,9 +8,14 @@ use Doctrine\ORM\Mapping as ORM;
  * Team
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="ASU\StackBundle\Entity\TeamRepository")
+ * @ORM\Entity(repositoryClass="ASU\StackBundle\Repository\TeamRepository")
  */
 class Team {
+    
+    // Define the Genre
+    const GENRE_SCHOOL = 0;
+    const GENRE_WORK = 1;
+    const GENRE_RELIGIOUS = 2;
 
     /**
      * @var integer
@@ -24,42 +29,46 @@ class Team {
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=64)
+     * @ORM\Column(name="title", type="string", length=64, nullable=false)
      */
     private $title;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=255)
+     * @ORM\Column(name="description", type="string", length=255, nullable=true)
      */
     private $description;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="xp", type="smallint")
+     * @ORM\Column(name="xp", type="smallint", nullable=false)
      */
     private $xp;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateCreated", type="date")
+     * @ORM\Column(name="dateCreated", type="date", nullable=false)
      */
     private $dateCreated;
 
     /**
      * @var Stacker
      *
-     * @ORM\Column(name="creator", type="object")
+     * @ORM\ManyToOne(
+     *      targetEntity="ASU\StackerBundle\Entity\Stacker",
+     *      fetch="LAZY"
+     * )
+     * @ORM\JoinColumn(name="creator_id", referencedColumnName="id")
      */
     private $creator;
 
     /**
-     * @var Genre
+     * @var integer
      *
-     * @ORM\Column(name="genre", type="object")
+     * @ORM\Column(name="genre", type="smallint", nullable=false)
      */
     private $genre;
 
@@ -180,7 +189,7 @@ class Team {
     /**
      * Set genre
      *
-     * @param \stdClass $genre
+     * @param \integer $genre
      * @return Team
      */
     public function setGenre($genre) {
@@ -192,9 +201,21 @@ class Team {
     /**
      * Get genre
      *
-     * @return \stdClass 
+     * @return string/integer
      */
-    public function getGenre() {
+    public function getGenre($string = false) {
+        if ($string) {
+            switch ($this->genre) {
+                case self::GENRE_SCHOOL:
+                    return "School";
+                case self::GENRE_WORK:
+                    return "Work";
+                case self::GENRE_RELIGIOUS:
+                    return "Religious";
+                default:
+                    return strval($this->genre);
+            }
+        }
         return $this->genre;
     }
 

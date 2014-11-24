@@ -1,0 +1,15 @@
+.loading-indicator {
+    height: 8px;
+    width: 26px;
+    background: url( '/bundles/irtasset/images/loading.gif' );
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: block;
+}
+
+.loading-indicator-overlay {
+    background-color: #FFFFFF;
+    opacity: 0.6;
+    filter: alpha(opacity = 60);
+    display: block;
+}

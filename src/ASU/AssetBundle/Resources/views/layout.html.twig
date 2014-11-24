@@ -1,0 +1,225 @@
+{% spaceless %}
+    <!doctype html>
+    <html>
+        <head>
+            <meta charset="utf8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <meta name="apple-mobile-web-app-capable" content="yes" />
+            <title>{% block title %}Win Stacking{% endblock %}</title>
+            <meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+            {% block head_style %}
+                {% stylesheets
+                    "bundles/irtasset/css/bootstrap.min.css"
+                    "bundles/irtasset/css/bootstrap-responsive.min.css"
+                    "bundles/irtasset/css/chosen.css"
+                    "bundles/irtasset/css/jquery.gritter.css"
+                    "bundles/irtasset/css/jquery.tagsinput.css"
+                    "bundles/irtasset/css/TableTools.css"
+                    "bundles/irtasset/css/multi-select.css"
+                    "bundles/irtasset/css/datepicker.css"
+                    "bundles/irtasset/css/bootstrap-timepicker.min.css"
+                    "bundles/irtasset/css/colorpicker.css"
+                    "bundles/irtasset/css/jquery.plupload.queue.css"
+                    "bundles/irtasset/css/jquery.plupload.queue.css"
+                    "bundles/irtasset/css/jquery.cleditor.css"
+                    "bundles/irtasset/css/uniform.default.min.css"
+                    "bundles/irtasset/css/style.css"
+                    "bundles/irtasset/css/showLoading.css"
+                    "bundles/irtasset/less/custom.less"
+                    debug=false
+                    filter="uglifycss"
+                    output="/css/compilied/layout.css"
+                %}
+                <link rel="stylesheet" href="{{ asset(asset_url) }}" media="screen" />
+                {% endstylesheets %}
+            {% endblock %}
+            {% block head_script %}      
+            {% endblock %}
+        </head>
+        {% block body %}
+            <body data-layout="fixed">
+                <div id="top"> 
+                    <div class="container-fluid">
+                        <div class="pull-left">
+                            <a href="{{ path('asu_asset_default_index') }}" id="brand">
+                                <img src="" class="logo-top-bar" />Win Stacking
+                            </a>
+                            <div class="collapse-me">
+                                <a href="mailto:cory.siebler@gmail.com?subject=Issue Found on Win Stacking Application" class="button">
+                                    <i class="icon-comment icon-white"></i>
+                                    Report an Issue
+                                </a>
+                            </div>
+                        </div>
+                        <div class="pull-right">
+                            <div class="btn-group">
+                                <a href="#" class="button dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-white icon-user"></i>
+                                    {% if app.user != "" %}
+                                        {{ app.user }}
+                                    {% else %}
+                                        Not Logged in
+                                    {% endif %}
+                                    <span class="caret"></span>
+                                </a>
+                                <div class="dropdown-menu pull-right">
+                                    <div class="right-details">
+                                        {% if app.user != "" %}
+                                            <h6>Logged in as</h6>
+                                            <span class="name">{{ app.user }}</span>
+                                            <span class="email">{{ app.user.email }}</span>
+                                            <ul>
+                                                <li>
+                                                    <a href="{{ path("logout") }}">Logout</a>
+                                                </li>
+                                                {% if is_granted("ROLE_SUPER_ADMIN") %}
+                                                    <li>
+                                                        <a href="{{ app.request.requestUri }}?_switch_user=b6d9748b63aae3706f181749789d936b">Admin</a>
+                                                    </li>
+                                                {% endif %}
+                                                {% if is_granted("ROLE_PREVIOUS_ADMIN") %}
+                                                    <li>
+                                                        <a href="{{ app.request.requestUri }}?_switch_user=_exit">Exit Impersonation</a>
+                                                    </li> 
+                                                {% endif %}
+                                            </ul>
+                                        {% else %}
+                                            <h6>Not Logged in</h6>
+                                            <ul>
+                                                <li>
+                                                    <a href="{{ path("login") }}">Login</a>
+                                                </li>
+                                            </ul>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="{{ path("logout") }}" class="button">
+                                <i class="icon-signout"></i>
+                                Logout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div id="main">
+                    <div id="navigation">
+                        {% if app.user is not null %}
+                            <div class="search">
+                                <i class="icon-search icon-white"></i>
+                                <form action="{{ path("search_results") }}" method="post">
+                                    <input type="text" name="searchTerm" placeholder="Search here" />
+                                </form>
+                            </div>
+                            {% include "ASUAssetBundle::navigation.html.twig" %}
+                        {% endif %}
+                    </div>
+                    <div id="content">
+                        <div class="page-header">
+                            <div class="pull-left">
+                                <h4><i class="{% block pageHeaderIcon %}icon-reorder{% endblock %}"></i>{% block pageHeaderTitle %}Blank page{% endblock %}</h4>
+                            </div>
+                            <div class="pull-right">
+                                <ul class="bread">
+                                    {% block breadcrumbs %}
+                                        <li>
+                                            <a href="">Home</a>
+                                            <span class="divider">/</span>
+                                        </li>
+                                    {% endblock %}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="container-fluid" id="content-area">
+                            {% if app.session.flashbag.has("success") %}
+                                {% for message in app.session.flashbag.get("success") %}
+                                    <div class="alert alert-success">
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                        <strong>Success!</strong> {{ message|raw }}.
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                            {% if app.session.flashbag.has("warning") %}
+                                {% for message in app.session.flashbag.get("warning") %}
+                                    <div class="alert alert-info">
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                        <strong>Warning!</strong> {{ message|raw }}.
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                            {% if app.session.flashbag.has("error") %}
+                                {% for message in app.session.flashbag.get("error") %}
+                                    <div class="alert alert-error">
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                        <strong>Error!</strong> {{ message|raw }}.
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                            {% block content %}
+                            {% endblock %}
+                        </div>
+                    </div>
+                </div>
+                <div class="navi-functions" style="display: none;">
+                    <div class="btn-group btn-group-custom">
+                        <a href="#" class="button button-square layout-not-fixed notify" rel="tooltip" title="Toggle fixed-nav" data-notify-message="Fixed nav is now " data-notify-title="Toggled fixed nav">
+                            <i class="icon-unlock"></i>
+                        </a>
+                        <a href="#" class="button button-square layout-not-fluid notify button-active" rel="tooltip" title="Toggle fixed-layout" data-notify-message="Fixed layout is now " data-notify-title="Toggled fixed layout">
+                            <i class="icon-exchange"></i>
+                        </a>
+                        <a href="#" class="button button-square notify notify-inverse layout-no-nav" rel="tooltip" title="Toggle navigation" data-notify-message="Navigation is now " data-notify-title="Toggled navigation">
+                            <i class="icon-arrow-left"></i>
+                        </a>
+                        <a href="#" class="button button-square button-active force-last notify-toggle toggle-active notify" rel="tooltip" title="Toggle notification"  data-notify-message="Notifications turned " data-notify-title="Toggled notifications">
+                            <i class="icon-bullhorn"></i>
+                        </a>
+                    </div>
+                </div>
+                {% block foot_script %}
+                    {% javascripts
+                        "bundles/irtasset/js/jquery.min.js"
+                        "bundles/irtasset/js/jquery.migrate.min.js"
+                        "bundles/irtasset/js/jquery.easing.min.js"
+                        "bundles/irtasset/js/jquery.ui.widget.min.js"
+                        "bundles/irtasset/js/jquery.ui.button.min.js"
+                        "bundles/irtasset/js/jquery.ui.spinner.min.js"
+                        "bundles/irtasset/js/jquery.ui.mouse.min.js"
+                        "bundles/irtasset/js/jquery.ui.slider.min.js"
+                        "bundles/irtasset/js/jquery.ui.slider.min.js"
+                        "bundles/irtasset/js/jquery.ui.slider.min.js"
+                        "bundles/irtasset/js/bootstrap.min.js"
+                        "bundles/irtasset/js/chosen.jquery.min.js"
+                        "bundles/irtasset/js/jquery.nicescroll.min.js"
+                        "bundles/irtasset/js/jquery.gritter.min.js"
+                        "bundles/irtasset/js/jquery.tagsinput.min.js"
+                        "bundles/irtasset/js/jquery.dataTables.min.js"
+                        "bundles/irtasset/js/TableTools.min.js"
+                        "bundles/irtasset/js/jquery.multi-select.min.js"
+                        "bundles/irtasset/js/bootstrap-timepicker.min.js"
+                        "bundles/irtasset/js/bootstrap-datepicker.min.js"
+                        "bundles/irtasset/js/jquery.maskedinput.min.js"
+                        "bundles/irtasset/js/bootstrap-colorpicker.min.js"
+                        "bundles/irtasset/js/plupload.full.min.js"
+                        "bundles/irtasset/js/jquery.plupload.queue.min.js"
+                        "bundles/irtasset/js/jquery.cleditor.min.js"
+                        "bundles/irtasset/js/jquery.uniform.min.js"
+                        "bundles/irtasset/js/bootstrap-fileupload.min.js"
+                        "bundles/irtasset/js/jquery.cleditor.min.js"
+                        "bundles/irtasset/js/jquery.showLoading.js"
+                        "bundles/irtasset/js/jquery.form.min.js"
+                        "bundles/irtasset/js/jquery.validate.min.js"
+                        "bundles/irtasset/js/jquery.form.wizard.min.js"
+                        "bundles/irtasset/js/additional-methods.min.js"
+                        "bundles/irtasset/js/application.js"
+                        "bundles/irtasset/js/eakroko.js"
+                        debug=false
+                        filter="uglifyjs"
+                        output="/js/compilied/layout.js"
+                    %}                    	
+                    <script src="{{ asset(asset_url) }}" type="text/javascript"></script>
+                    {% endjavascripts %}
+                {% endblock %}
+            </body>
+        {% endblock %}
+    </html>
+{% endspaceless %}

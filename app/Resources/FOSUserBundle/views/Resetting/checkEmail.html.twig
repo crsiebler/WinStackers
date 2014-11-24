@@ -1,0 +1,22 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block title %}{{ parent() }} | Email Check{% endblock %}
+
+{% block body %}
+    <body class="login-body">
+        <div class="login-wrap">
+            <h2>Interest Reporting Tool</h2>
+            <div class="login">
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>Success:</strong> {{ 'resetting.check_email'|trans({'%email%': email}) }}
+                </div>
+            </div>
+        </div>
+    </body>
+    <p>
+
+    </p>
+{% endblock %}

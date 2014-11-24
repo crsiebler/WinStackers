@@ -70,3 +70,19 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: ASU\StackerBundle\Entity\Stacker
+    # registration:
+       # form:
+           # type: asu_stacker_stackertype
+
+kmj_toolkit:
+    administrator:
+        firstname: %toolkit_admin_firstname%
+        lastname: %toolkit_admin_lastname%
+        username: %toolkit_admin_username%
+        email: %toolkit_admin_email%
+        password: %toolkit_admin_password%

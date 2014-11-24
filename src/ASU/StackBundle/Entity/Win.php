@@ -3,14 +3,21 @@
 namespace ASU\StackBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Win
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="ASU\StackBundle\Entity\WinRepository")
+ * @ORM\Entity(repositoryClass="ASU\StackBundle\Repository\WinRepository")
  */
 class Win {
+    
+    // Define the Win Categories
+    const CATEGORY_CHORE = 0;
+    const CATEGORY_DUTY = 1;
+    const CATEGORY_GOAL = 2;
+    const CATEGORY_MILESTONE = 3;
 
     /**
      * @var integer
@@ -24,58 +31,77 @@ class Win {
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=64)
+     * @ORM\Column(name="title", type="string", length=64, nullable=false)
      */
     private $title;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="xp", type="smallint")
+     * @ORM\Column(name="xp", type="smallint", nullable=false)
      */
     private $xp;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateCreated", type="date")
+     * @ORM\Column(name="dateCreated", type="date", nullable=false)
      */
     private $dateCreated;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateCompleted", type="date")
+     * @ORM\Column(name="dateCompleted", type="date", nullable=true)
      */
     private $dateCompleted;
 
     /**
      * @var Stacker
      *
-     * @ORM\Column(name="stacker", type="object")
+     * @ORM\ManyToOne(
+     *      targetEntity="ASU\StackerBundle\Entity\Stacker",
+     *      inversedBy="wins",
+     *      fetch="LAZY"
+     * )
      */
     private $stacker;
+    
+    /**
+     * @var Team
+     *
+     * @ORM\ManyToOne(
+     *      targetEntity="ASU\StackerBundle\Entity\Team",
+     *      inversedBy="wins",
+     *      fetch="LAZY"
+     * )
+     */
+    private $team;
 
     /**
-     * @var Category
+     * @var integer
      *
-     * @ORM\Column(name="category", type="object")
+     * @ORM\Column(name="category", type="smallint")
      */
     private $category;
     
     /**
-     * @var ArrayList
+     * @var ArrayList<Goal>
      * 
-     * @ORM\ManyToOne()
+     * @ORM\OneToMany(
+     *      targetEntity="ASU\StackerBundle\Entity\Goal",
+     *      mappedBy="win",
+     *      fetch="EAGER"
+     * )
      */
-    private $friends;
+    private $goals;
     
     /**
      * Get id
@@ -206,16 +232,37 @@ class Win {
     /**
      * Get stacker
      *
-     * @return \stdClass 
+     * @return Stacker
      */
     public function getStacker() {
         return $this->stacker;
+    }
+    
+    /**
+     * get team
+     * 
+     * @return Team
+     */
+    function getTeam() {
+        return $this->team;
+    }
+
+    /**
+     * set team
+     * 
+     * @param Team $team
+     * @return Win
+     */
+    function setTeam(Team $team) {
+        $this->team = $team;
+        
+        return $this;
     }
 
     /**
      * Set category
      *
-     * @param \stdClass $category
+     * @param integer $category
      * @return Win
      */
     public function setCategory($category) {
@@ -227,31 +274,45 @@ class Win {
     /**
      * Get category
      *
-     * @return \stdClass 
+     * @return string/integer
      */
-    public function getCategory() {
+    public function getCategory($string = false) {
+        if ($string) {
+            switch ($this->category) {
+                case self::CATEGORY_CHORE:
+                    return "Chore";
+                case self::CATEGORY_DUTY:
+                    return "Duty";
+                case self::CATEGORY_GOAL:
+                    return "Goal";
+                case self::CATEGORY_MILESTONE:
+                    return "Milestone";
+                default:
+                    return strval($this->category);
+            }
+        }
         return $this->category;
     }
 
     /**
-     * Get friends
+     * Set goals
      * 
-     * @return ArrayList
+     * @return ArrayList<Goal>
      */
-    function getFriends() {
-        return $this->friends;
+    function getGoals() {
+        return $this->goals;
     }
 
     /**
-     * Set friends
+     * set goals
      * 
-     * @param ArrayList $friends
+     * @param ArrayList<Goal> $goals
+     * @return Win
      */
-    function setFriends(ArrayList $friends) {
-        $this->friends = $friends;
+    function setGoals($goals) {
+        $this->goals = $goals;
         
         return $this;
     }
-
 
 }

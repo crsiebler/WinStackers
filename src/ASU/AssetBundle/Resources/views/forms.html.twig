@@ -1,0 +1,119 @@
+{% use 'form_div_layout.html.twig' with form_row as base_field_row %}
+
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+            {% for error in errors %}
+                <span style="color:red; margin-left: 10px;">{{ error.message }}</span>
+            {% endfor %}
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}
+
+{% block form_row %}
+    {% spaceless %}
+        <div class="control-group">
+            {{ form_label(form, label|default(null)) }}
+            <div class="controls {{ (form.vars.compound) ? "prototype" : "" }}" {% if form.vars.prototype is defined %} data-prototype='{{form_row(form.vars.prototype)}}' {% endif %}>
+                {{ form_widget(form) }}
+                {{ form_errors(form) }}
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock form_row %}
+        
+{% block form_label %}
+{% spaceless %}
+    {% if label is not sameas(false) %}
+        {% if not compound %}
+            {% set label_attr = label_attr|merge({'for': id}) %}
+        {% endif %}
+        {% if required %}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+        {% endif %}
+        {% if label is empty %}
+            {% set label = name|humanize %}
+        {% endif %}
+        <label class="control-label" {% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+            {{ label|trans({}, translation_domain) }}
+            {% if form.vars.compound %}
+                {% form_theme form "ASUAssetBundle::nestedForms.html.twig" %}
+                {% if form.vars.allow_add is defined and form.vars.allow_add %}
+                    <br />
+                    <button class="addFormButton button button-basic icon-plus"></button>
+                {% endif %}
+            {% endif %}
+        </label>
+    {% endif %}
+{% endspaceless %}
+{% endblock form_label %}
+
+{% block number_widget %}
+    {% spaceless %}
+        {# type="number" doesn't work with floats #}
+        <input type="number" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+    {% endspaceless %}
+{% endblock number_widget %}
+
+{% block money_widget %}
+    {% spaceless %}
+    {% set type = type|default('number') %}
+        {{ money_pattern|replace({ '{{ widget }}': block('form_widget_simple') })|raw }}
+    {% endspaceless %}
+{% endblock money_widget %}
+
+{% block form_widget_compound %}
+    {% spaceless %}
+        {% if form.parent is empty %}
+            {{ form_errors(form) }}
+        {% else %} 
+        {% endif %}
+        {{ block('form_rows') }}
+        {{ form_rest(form) }}
+    {% endspaceless %}
+{% endblock form_widget_compound %}
+
+{% block collection_widget %}
+    {% spaceless %}
+        {% if prototype is defined %}
+            {% set attr = attr|merge({'data-prototype': form_row(prototype) }) %}
+        {% endif %}
+        {{ block('form_widget') }}
+    {% endspaceless %}
+{% endblock collection_widget %}
+    
+{% block form_widget_simple %}
+    {% spaceless %}
+    {% set type = type|default('text') %}
+        {% if type == "file" %}
+            <div class="fileupload fileupload-new" data-provides="fileupload">
+                <div class="input-append">
+                    <div class="uneditable-input span2">
+                        <i class="icon-file fileupload-exists"></i> 
+                        <span class="fileupload-preview"></span>
+                    </div>
+                    <span class="button button-basic btn-file">
+                        <span class="fileupload-new">Select file</span>
+                        <span class="fileupload-exists">Change</span>
+                        <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+                    </span>
+                    <a href="#" class="button button-basic fileupload-exists" data-dismiss="fileupload">Remove</a>
+                </div>
+            </div>            
+        {% else %}
+            <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+        {% endif %}
+{% endspaceless %}
+{% endblock form_widget_simple %}
+    
+    
+{% block button_widget %}
+{% spaceless %}
+    {% if label is empty %}
+        {% set label = name|humanize %}
+    {% endif %}
+        <div class="form-actions">
+            <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>{{ label|trans({}, translation_domain) }}</button>
+        </div>
+{% endspaceless %}
+{% endblock button_widget %}

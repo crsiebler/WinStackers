@@ -1,0 +1,27 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain "FOSUserBundle" %}
+
+{% block title %}{{ parent() }} | Password Reset | Request{% endblock %}
+
+{% block body %}
+    <body class="login-body">
+        <div class="login-wrap">
+            <h2>Interest Reporting Tool</h2>
+            <div class="login">
+                <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request"> 
+                    {% if invalid_username is defined %}
+                        <div class="alert alert-error">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <strong>Error</strong> The email address {{ invalid_username }} does not exist.
+                        </div>
+                    {% endif %}
+                    <div class="email">
+                        <input placeholder="Email address" type="text" id="username" name="username" class='input-block-level required' required="required" />
+                    </div>
+                    <button type="submit" value="Reset Password" class='button button-basic-darkblue btn-block'>{{ 'resetting.request.submit'|trans }}</button>
+                </form>
+            </div>
+        </div>
+    </body>
+{% endblock body %}

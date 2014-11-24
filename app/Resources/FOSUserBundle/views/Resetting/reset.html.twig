@@ -1,0 +1,39 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain "FOSUserBundle" %}
+
+{% form_theme form _self %}
+
+{% use 'form_div_layout.html.twig' with form_row as base_field_row %}
+
+{% block title %}{{ parent() }} | Password Reset{% endblock %}
+
+{% block form_row %}
+    {% spaceless %}
+        <div>
+            {{ form_widget(form) }}
+            {{ form_errors(form) }}
+        </div>
+    {% endspaceless %}
+{% endblock form_row %}
+
+{% block form_widget_simple %}
+{% spaceless %}
+    {% set type = type|default('text') %}
+    <input type="{{ type }}" placeholder="{{ label|trans }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+{% endspaceless %}
+{% endblock form_widget_simple %}
+
+{% block body %}
+    <body class="login-body">
+        <div class="login-wrap">
+            <h2>Interest Reporting Tool</h2>
+            <div class="login">
+                <form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="fos_user_resetting_reset">
+                    {{ form_widget(form) }}
+                    <button type="submit" value="{{ 'resetting.reset.submit'|trans }}" class='button button-basic-darkblue btn-block'>{{ 'resetting.reset.submit'|trans }}</button>
+                </form>
+            </div>
+        </div>
+    </body>
+{% endblock body %}
