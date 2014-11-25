@@ -1,8 +1,7 @@
-{% extends '::base.html.twig' %}
+{% extends "ASUAssetBundle::layout.html.twig" %}
 
-{% block body -%}
+{% block content %}
     <h1>Stacker list</h1>
-
     <table class="records_list">
         <thead>
             <tr>
@@ -20,26 +19,8 @@
                 <td>{{ entity.firstName }}</td>
                 <td>{{ entity.lastName }}</td>
                 <td>{{ entity.passwordReset }}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('stacker_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('stacker_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-                </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-        <ul>
-        <li>
-            <a href="{{ path('stacker_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
-    {% endblock %}
+{% endblock %}
