@@ -1,0 +1,53 @@
+{% extends "ASUAssetBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }} | Team | List{% endblock %}
+
+{% block breadcrumbs %}
+    <li>
+        <a href="{{ path('asu_asset_default_index') }}">Home</a>
+        <span class="divider">/</span>
+    </li>
+    <li class="active">
+        Wins
+    </li>
+{% endblock %}
+
+{% block pageHeaderTitle %}Teams{% endblock %}
+
+{% block content %}
+    <h1>Team list</h1>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="box">
+                <div class="box-head">Teams</div>
+                <div class="box-body box-body-nopadding">
+                    {% block toolbar %}
+                    {% endblock %}
+                    <table class="table table-nomargin">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Genre</th>
+                                <th>Description</th>
+                                <th>Created By</th>
+                                <th>Date Created</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for team in teams %}
+                            <tr>
+                                <td>{{ team.name }}</td>
+                                <td>{{ team.getGenre(true) }}</td>
+                                <td>{{ team.description }}</td>
+                                <td>{{ team.creator }}</td>
+                                <td>{{ (team.dateCreated is not null) ? team.dateCreated|date('Y-m-d') }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

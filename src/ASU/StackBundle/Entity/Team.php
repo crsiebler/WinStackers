@@ -29,9 +29,9 @@ class Team {
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=64, nullable=false)
+     * @ORM\Column(name="name", type="string", length=64, nullable=false)
      */
-    private $title;
+    private $name;
 
     /**
      * @var string
@@ -39,13 +39,6 @@ class Team {
      * @ORM\Column(name="description", type="string", length=255, nullable=true)
      */
     private $description;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="xp", type="smallint", nullable=false)
-     */
-    private $xp;
 
     /**
      * @var \DateTime
@@ -116,24 +109,24 @@ class Team {
     }
 
     /**
-     * Set title
+     * Set name
      *
-     * @param string $title
+     * @param string $name
      * @return Team
      */
-    public function setTitle($title) {
-        $this->title = $title;
+    public function setName($name) {
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get title
+     * Get name
      *
      * @return string 
      */
-    public function getTitle() {
-        return $this->title;
+    public function getName() {
+        return $this->name;
     }
 
     /**
@@ -155,27 +148,6 @@ class Team {
      */
     public function getDescription() {
         return $this->description;
-    }
-
-    /**
-     * Set xp
-     *
-     * @param integer $xp
-     * @return Team
-     */
-    public function setXp($xp) {
-        $this->xp = $xp;
-
-        return $this;
-    }
-
-    /**
-     * Get xp
-     *
-     * @return integer 
-     */
-    public function getXp() {
-        return $this->xp;
     }
 
     /**

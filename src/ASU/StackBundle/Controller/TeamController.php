@@ -24,13 +24,13 @@ class TeamController extends Controller {
      * @Method("GET")
      * @Template()
      */
-    public function indexAction() {
+    public function listAction() {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('ASUStackBundle:Team')->findAll();
+        $teams = $em->getRepository('ASUStackBundle:Team')->findAll();
 
         return array(
-            'entities' => $entities,
+            'teams' => $teams,
         );
     }
 

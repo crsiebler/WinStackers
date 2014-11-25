@@ -24,13 +24,13 @@ class StackerController extends Controller {
      * @Method("GET")
      * @Template()
      */
-    public function indexAction() {
+    public function listAction() {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('ASUStackBundle:Stacker')->findAll();
+        $stackers = $em->getRepository('ASUStackBundle:Stacker')->findAll();
 
         return array(
-            'entities' => $entities,
+            'stackers' => $stackers,
         );
     }
 

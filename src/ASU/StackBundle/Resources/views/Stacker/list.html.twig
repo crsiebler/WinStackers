@@ -1,0 +1,24 @@
+{% extends "ASUAssetBundle::layout.html.twig" %}
+
+{% block content %}
+    <h1>Stacker list</h1>
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for stacker in stackers %}
+            <tr>
+                <td>{{ stacker.firstName }}</td>
+                <td>{{ stacker.lastName }}</td>
+                <td>
+                <td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

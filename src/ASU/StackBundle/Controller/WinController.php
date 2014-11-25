@@ -24,13 +24,13 @@ class WinController extends Controller {
      * @Method("GET")
      * @Template()
      */
-    public function indexAction() {
+    public function listAction() {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('ASUStackBundle:Win')->findAll();
+        $wins = $em->getRepository('ASUStackBundle:Win')->findAll();
 
         return array(
-            'entities' => $entities,
+            'wins' => $wins,
         );
     }
 

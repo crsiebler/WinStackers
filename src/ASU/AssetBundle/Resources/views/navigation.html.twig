@@ -2,10 +2,10 @@
     <li class="{% if 'asu_asset_default_index' in app.request.attributes.get('_route') %}active open{% endif %}">
         <a href="{{ path('asu_asset_default_index') }}"><i class="icon-dashboard icon-white"></i><span>Dashboard</span></a>
     </li>
-    <li class="{% if 'asu_stack_win_index' in app.request.attributes.get('_route') %}active open{% endif %}">
-        <a href="{{ path('asu_stack_win_index') }}"><i class="icon-white"></i><span>Wins</span></a>
+    <li class="{% if 'asu_stack_win_list' in app.request.attributes.get('_route') %}active open{% endif %}">
+        <a href="{{ path('asu_stack_win_list') }}"><i class="icon-white"></i><span>Wins</span></a>
     </li>
-    <li class="{% if 'asu_stack_team_index' in app.request.attributes.get('_route') %}active open{% endif %}">
-        <a href="{{ path('asu_stack_team_index') }}"><i class="icon-white"></i><span>Teams</span></a>
+    <li class="{% if 'asu_stack_team_list' in app.request.attributes.get('_route') %}active open{% endif %}">
+        <a href="{{ path('asu_stack_team_list') }}"><i class="icon-white"></i><span>Teams</span></a>
     </li>
 </ul>

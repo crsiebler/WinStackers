@@ -24,13 +24,13 @@ class GoalController extends Controller {
      * @Method("GET")
      * @Template()
      */
-    public function indexAction() {
+    public function listAction() {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('ASUStackBundle:Goal')->findAll();
+        $goals = $em->getRepository('ASUStackBundle:Goal')->findAll();
 
         return array(
-            'entities' => $entities,
+            'goals' => $goals,
         );
     }
 

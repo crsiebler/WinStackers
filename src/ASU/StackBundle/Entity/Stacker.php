@@ -59,6 +59,15 @@ class Stacker extends \ASU\SecurityBundle\Entity\User {
         $this->friends = new ArrayCollection();
         $this->teams = new ArrayCollection();
     }
+    
+    /**
+     * To String
+     * 
+     * @return string
+     */
+    public function __toString() {
+        return $this->username;
+    }
 
     /**
      * Get wins

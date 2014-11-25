@@ -5,18 +5,18 @@
     <table class="records_list">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Description</th>
-                <th>Percentcomplete</th>
+                <th>Percent Complete</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for entity in entities %}
+        {% for goal in goals %}
             <tr>
-                <td><a href="{{ path('goal_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.description }}</td>
-                <td>{{ entity.percentComplete }}</td>
+                <td>{{ goal.description }}</td>
+                <td>{{ goal.percentComplete }}</td>
+                <td>
+                </td>
             </tr>
         {% endfor %}
         </tbody>
