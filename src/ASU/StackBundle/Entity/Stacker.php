@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Stacker
  *
- * @ORM\Table()
+ * @ORM\Table(name="stackers")
  * @ORM\Entity(repositoryClass="ASU\StackBundle\Repository\StackerRepository")
  */
 class Stacker extends \ASU\SecurityBundle\Entity\User {

@@ -22,3 +22,19 @@ parameters:
     debug_toolbar:          true
     debug_redirects:        false
     use_assetic_controller: true
+
+    toolkit_admin_firstname: ~
+    toolkit_admin_lastname: ~
+    toolkit_admin_username: ~
+    toolkit_admin_email: ~
+    toolkit_admin_password: ~
+
+    node_path:  /usr/local/bin/node
+    node_module_path: /usr/local/lib/node_modules
+    uglify_js_path: /usr/local/bin/uglifyjs
+    uglify_css: /usr/local/bin/uglifycss
+    less_path: /usr/bin/less
+    host: localhost
+    scheme: http
+    httpPort: 8000
+    base_url: ~

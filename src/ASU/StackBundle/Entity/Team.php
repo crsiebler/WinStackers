@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Team
  *
- * @ORM\Table()
+ * @ORM\Table(name="teams")
  * @ORM\Entity(repositoryClass="ASU\StackBundle\Repository\TeamRepository")
  */
 class Team {
@@ -80,7 +80,7 @@ class Team {
      *      inversedBy="teams",
      *      fetch="LAZY"
      * )
-     * @ORM\JoinTable()
+     * @ORM\JoinTable(name="members")
      */
     private $members;
 
