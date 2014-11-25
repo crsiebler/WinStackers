@@ -8,7 +8,7 @@
         <span class="divider">/</span>
     </li>
     <li class="active">
-        Wins
+        Teams
     </li>
 {% endblock %}
 
@@ -42,6 +42,8 @@
                                 <td>{{ team.description }}</td>
                                 <td>{{ team.creator }}</td>
                                 <td>{{ (team.dateCreated is not null) ? team.dateCreated|date('Y-m-d') }}</td>
+                                <td>
+                                </td>
                             </tr>
                         {% endfor %}
                         </tbody>

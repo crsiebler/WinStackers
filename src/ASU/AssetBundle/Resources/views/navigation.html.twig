@@ -3,9 +3,28 @@
         <a href="{{ path('asu_asset_default_index') }}"><i class="icon-dashboard icon-white"></i><span>Dashboard</span></a>
     </li>
     <li class="{% if 'asu_stack_win_list' in app.request.attributes.get('_route') %}active open{% endif %}">
-        <a href="{{ path('asu_stack_win_list') }}"><i class="icon-white"></i><span>Wins</span></a>
+        <a href=""><i class="icon-trophy icon-white"></i><span>Wins</span></a>
+        <ul class="subnav">
+            <li class="{% if 'asu_stack_win_list' == app.request.attributes.get('_route') %}active{% endif %}">
+                <a href="{{ path('asu_stack_win_list', { 'stacker': app.user.id }) }}">My Wins</a>
+            </li>
+            <li class="{% if 'asu_stack_win_update' == app.request.attributes.get('_route') %}active{% endif %}">
+                <a href="{{ path('asu_stack_win_update') }}">Create</a>
+            </li>
+        </ul
     </li>
-    <li class="{% if 'asu_stack_team_list' in app.request.attributes.get('_route') %}active open{% endif %}">
-        <a href="{{ path('asu_stack_team_list') }}"><i class="icon-white"></i><span>Teams</span></a>
+    <li class="{% if 'asu_stack_team' in app.request.attributes.get('_route') %}active open{% endif %}">
+        <a href=""><i class="icon-group icon-white"></i><span>Teams</span></a>
+        <ul class="subnav">
+            <li class="{% if 'asu_stack_team_list' == app.request.attributes.get('_route') %}active{% endif %}">
+                <a href="{{ path('asu_stack_team_list') }}">All Teams</a>
+            </li>
+            <li class="{% if 'asu_stack_team_member' == app.request.attributes.get('_route') %}active{% endif %}">
+                <a href="{{ path('asu_stack_team_member', { 'stacker': app.user.id }) }}">My Teams</a>
+            </li>
+            <li class="{% if 'asu_stack_team_update' in app.request.attributes.get('_route') %}active{% endif %}">
+                <a href="{{ path('asu_stack_team_update') }}">Create</a>
+            </li>
+        </ul>
     </li>
 </ul>

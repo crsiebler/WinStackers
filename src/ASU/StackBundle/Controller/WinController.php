@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use ASU\StackBundle\Entity\Stacker;
 use ASU\StackBundle\Entity\Win;
 use ASU\StackBundle\Form\WinType;
 
@@ -20,18 +21,26 @@ class WinController extends Controller {
     /**
      * Lists all Win entities.
      *
-     * @Route("/")
+     * @Route("/{stacker}")
      * @Method("GET")
      * @Template()
      */
-    public function listAction() {
+    public function listAction(Stacker $stacker) {
         $em = $this->getDoctrine()->getManager();
 
-        $wins = $em->getRepository('ASUStackBundle:Win')->findAll();
+        $wins = $em->getRepository('ASUStackBundle:Win')->findByStacker($stacker);
 
         return array(
             'wins' => $wins,
         );
+    }
+    
+    /**
+     * @Route("/update")
+     * @Template()
+     */
+    public function updateAction() {
+        
     }
 
 }
