@@ -62,9 +62,9 @@ class TeamController extends Controller {
         // Grab the logged in user
         $stacker = $this->get('security.context')->getToken()->getUser();
         
-        // Check if the win is set
+        // Check if the team is set
         if (!isset($team)) {
-            // Initialize a new Win
+            // Initialize a new Team
             $team = new Team($stacker);
         }
 

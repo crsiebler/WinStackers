@@ -1,0 +1,21 @@
+{% set editMode = true %}
+
+{% extends "ASUStackBundle:Stacker:create.html.twig" %}
+
+{% block title %}ASU | Stacker | Edit{% endblock %}
+
+{% block breadcrumbs %}
+    <li>
+        <a href="{{ path('asu_asset_default_index') }}">Home</a>
+        <span class="divider">/</span>
+    </li>
+    <li>
+        <a href="{{ path('asu_stack_stacker_list') }}">Stackers</a>
+        <span class="divider">/</span>
+    </li>
+    <li class="active">
+        Edit
+    </li>
+{% endblock %}
+
+{% block pageHeaderTitle %}Stacker Edit{% endblock %}

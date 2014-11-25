@@ -48,6 +48,73 @@ class StackerController extends Controller {
     }
     
     /**
+     * Create a new stacker.
+     * 
+     * @Route("/create")
+     * @Method({"GET", "POST"})
+     * @Template()
+     */
+    public function createAction(Request $request, Stacker $stacker = null) {
+        // Check if the stacker is set
+        if (!isset($stacker)) {
+            // Grab the entitiy manager
+            $em = $this->getDoctrine()->getManager();
+            
+            // Retrieve the default user role
+            $role = $em->getRepository('KMJToolkitBundle:Role')->findOneById(3);
+            
+            // Initialize a new Stacker
+            $stacker = new Stacker();
+            
+            // Add the role to the Stacker
+            $stacker->addRole($role);
+        }
+
+        // Create the Win form & handle the request
+        $form = $this->createForm(new StackerType(), $stacker);
+        $form->handleRequest($request);
+
+        // Check to make sure the user input is valid
+        if ($form->isValid()) {
+            // Grab the entity manager
+            $em = $this->getDoctrine()->getManager();
+
+            // Persist the changes to the database
+            $em->persist($stacker);
+            $em->flush();
+            
+            // Display a notification
+            $this->get('session')->getFlashBag()->add('success', "Stacker added successfully");
+
+            // Redirect to the details page of the new Loan
+            return $this->redirect($this->generateUrl('asu_asset_default_index', array()));
+        } else if (count($form->getErrors()) > 0) {
+            // Errors exist on the form so display them as a flash message
+            foreach ($form->getErrors() as $error) {
+                $this->get('session')->getFlashBag()->add(
+                        'error', str_replace("ERROR: ", "", trim($error->getMessage()))
+                );
+            }
+        }
+
+        return array(
+            'stacker' => $stacker,
+            'form' => $form->createView(),
+        );
+    }
+    
+    /**
+     * Update an existing stacker.
+     * 
+     * @Route("/update/{stacker}", requirements={"stacker": "\d+"})
+     * @Method({"GET", "POST"})
+     * @Template()
+     */
+    public function updateAction(Request $request, Stacker $stacker) {
+        return $this->createAction($request, $stacker);
+    }
+    
+    /**
      * Display the details for the stacker.
      * 
      * @Route("/details/{stacker}", requirements={"stacker": "\d+"})
