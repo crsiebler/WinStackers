@@ -46,11 +46,11 @@
                                 <td>{{ (win.dateCreated is not null) ? win.dateCreated|date('Y-m-d') }}</td>
                                 <td>{{ (win.dateCompleted is not null) ? win.dateCompleted|date('Y-m-d'):"N/A" }}</td>
                                 <td>
-                                {% if win.dateCompleted is null %}
+                                {% if app.user == win.stacker and win.dateCompleted is null %}
                                     <a href="{{ path('asu_stack_win_complete', { 'win': win.id }) }}" class="button button-basic-green button-small">Complete</a>
-                                {% endif %}
+                                {% elseif app.user == win.stacker %}
                                     <a href="{{ path('asu_stack_win_update', { 'win': win.id }) }}" class="button button-basic-blue button-small">Edit</a>
-                                    <a href="{{ path('asu_stack_win_details', { 'win': win.id }) }}" class="button button-basic button-small">Details</a>
+                                {% endif %}
                                 </td>
                             </tr>
                         </tbody>

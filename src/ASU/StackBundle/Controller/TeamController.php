@@ -137,7 +137,7 @@ class TeamController extends Controller {
     /**
      * Create a team's win.
      * 
-     * @Route("/create/win/{team}", requirements={"team": "\d+"})
+     * @Route("/win/create/{team}", requirements={"team": "\d+"})
      * @Method({"GET", "POST"})
      * @Template("ASUStackBundle:Win:create.html.twig")
      */
@@ -184,7 +184,7 @@ class TeamController extends Controller {
     /**
      * Edit a team's win.
      * 
-     * @Route("/update/win/{team}/{win}", requirements={"team": "\d+", "win": "\d+"})
+     * @Route("/win/update/{team}/{win}", requirements={"team": "\d+", "win": "\d+"})
      * @Method({"GET", "POST"})
      * @Template("ASUStackBundle:Win:update.html.twig")
      */
@@ -195,14 +195,14 @@ class TeamController extends Controller {
     /**
      * Subscribe the stacker to the team.
      * 
-     * @Route("/leave/{team}/{stacker}", requirements={"team": "\d+", "stacker": "\d+"})
+     * @Route("/join/{team}/{stacker}", requirements={"team": "\d+", "stacker": "\d+"})
      * @Method("GET")
      */
     public function joinAction(Team $team, Stacker $stacker) {
         // Grab the entity manager
         $em = $this->getDoctrine()->getManager();
         
-        // Remove the membership
+        // Add the membership
         $stacker->getTeams()->add($team);
         $team->getMembers()->add($stacker);
         

@@ -1,24 +1,53 @@
 {% extends "ASUAssetBundle::layout.html.twig" %}
 
+{% block title %}{{ parent() }} | Stackers | List{% endblock %}
+
+{% block breadcrumbs %}
+    <li>
+        <a href="{{ path('asu_asset_default_index') }}">Home</a>
+        <span class="divider">/</span>
+    </li>
+    <li class="active">
+        Stackers
+    </li>
+{% endblock %}
+
+{% block pageHeaderTitle %}Stackers{% endblock %}
+
 {% block content %}
     <h1>Stacker list</h1>
-    <table class="records_list">
-        <thead>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for stacker in stackers %}
-            <tr>
-                <td>{{ stacker.firstName }}</td>
-                <td>{{ stacker.lastName }}</td>
-                <td>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="box">
+                <div class="box-head">Stackers</div>
+                <div class="box-body box-body-nopadding">
+                {% block toolbar %}
+                {% endblock %}
+                    <table class="table table-nomargin">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for stacker in stackers if app.user != stacker %}
+                            <tr>
+                                <td>{{ stacker.username }}</td>
+                                <td>
+                                {% if app.user in stacker.friends %}
+                                    <a href="{{ path('asu_stack_stacker_removefriend', { 'stacker': stacker.id }) }}" class="button button-basic-red button-small">Remove Friend</a>
+                                {% elseif app.user != stacker %}
+                                    <a href="{{ path('asu_stack_stacker_addfriend', { 'stacker': stacker.id }) }}" class="button button-basic-green button-small">Add Friend</a>
+                                {% endif %}
+                                    <a href="{{ path('asu_stack_stacker_details', { 'stacker': stacker.id }) }}" class="button button-basic button-small">Details</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

@@ -27,4 +27,15 @@
             </li>
         </ul>
     </li>
+    <li class="{% if 'asu_stack_stacker' in app.request.attributes.get('_route') %}active open{% endif %}">
+        <a href=""><i class="icon-user icon-white"></i><span>Stackers</span></a>
+        <ul class="subnav">
+            <li class="{% if 'asu_stack_stacker_list' == app.request.attributes.get('_route') %}active{% endif %}">
+                <a href="{{ path('asu_stack_stacker_list') }}">All Stackers</a>
+            </li>
+            <li class="{% if 'asu_stack_stacker_friends' == app.request.attributes.get('_route') %}active{% endif %}">
+                <a href="{{ path('asu_stack_stacker_friends', { 'stacker': app.user.id }) }}">My Friends</a>
+            </li>
+        </ul>
+    </li>
 </ul>

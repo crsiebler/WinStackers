@@ -1,19 +1,21 @@
-{% extends "ASUAssetBundle::layout.html.twig" %}
+{% set editMode = true %}
 
-{% block title %}{{ parent() }} | Team | Update{% endblock %}
+{% extends "ASUStackBundle:Team:create.html.twig" %}
+
+{% block title %}ASU | Team | Edit{% endblock %}
 
 {% block breadcrumbs %}
     <li>
         <a href="{{ path('asu_asset_default_index') }}">Home</a>
         <span class="divider">/</span>
     </li>
+    <li>
+        <a href="{{ path('asu_stack_team_list') }}">Teams</a>
+        <span class="divider">/</span>
+    </li>
     <li class="active">
-        Teams
+        Edit
     </li>
 {% endblock %}
 
-{% block pageHeaderTitle %}Teams{% endblock %}
-
-{% block content %}
-    
-{% endblock %}
+{% block pageHeaderTitle %}Team Edit{% endblock %}

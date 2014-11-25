@@ -1,0 +1,173 @@
+{% extends "ASUAssetBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }} | Stacker | Details{% endblock %}
+
+{% block breadcrumbs %}
+    <li>
+        <a href="{{ path('asu_asset_default_index') }}">Home</a>
+        <span class="divider">/</span>
+    </li>
+    <li>
+        <a href="{{ path('asu_stack_stacker_list') }}">Stackers</a>
+        <span class="divider">/</span>
+    </li>
+    <li class="active">
+        Stacker Details
+    </li>
+{% endblock %}
+
+{% block pageHeaderTitle %}Stacker Details{% endblock %}
+
+{% block content %}
+    <h1>Stacker Details</h1>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="box">
+                <div class="box-head">Stacker Information</div>
+                <div class="box-body box-body-nopadding">
+                {% block toolbar %}
+                {% endblock %}
+                    <table class="table table-nomargin">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Date Created</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ stacker.username }}</td>
+                                <td>{{ (stacker.dateCreated is not null) ? stacker.dateCreated|date('Y-m-d') }}</td>
+                                <td>
+                                {% if app.user in stacker.friends %}
+                                    <a href="{{ path('asu_stack_stacker_removefriend', { 'stacker': stacker.id }) }}" class="button button-basic-red button-small">Remove Friend</a>
+                                {% elseif app.user != stacker %}
+                                    <a href="{{ path('asu_stack_stacker_addfriend', { 'stacker': stacker.id }) }}" class="button button-basic-green button-small">Add Friend</a>
+                                {% endif %}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span6">
+            <div class="box">
+                <div class="box-head">Teams</div>
+                <div class="box-body box-body-nopadding">
+                    <table class="table table-nomargin">
+                        <tbody>
+                        {% for team in stacker.teams %}
+                            <tr>
+                                <td>
+                                    <a href="{{ path('asu_stack_team_details', { "team": team.id }) }}">{{ team.name }}</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="span6">
+            <div class="box">
+                <div class="box-head">Friends</div>
+                <div class="box-body box-body-nopadding">
+                    <table class="table table-nomargin">
+                        <tbody>
+                        {% for friend in stacker.friends %}
+                            <tr>
+                                <td>
+                                    <a href="{{ path('asu_stack_stacker_details', { "stacker": friend.id }) }}">{{ friend }}</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="box">
+                <div class="box-head">Incomplete Wins</div>
+                <div class="box-body box-body-nopadding">
+                {% block openToolbar %}
+                {% endblock %}
+                    <table class="table table-nomargin">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>XP</th>
+                                <th>Category</th>
+                                <th>Date Created</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for win in stacker.wins if win.dateCompleted is null %}
+                            <tr>
+                                <td>{{ win.title }}</td>
+                                <td>{{ win.xp }}</td>
+                                <td>{{ win.getCategory(true) }}</td>
+                                <td>{{ (win.dateCreated is not null) ? win.dateCreated|date('Y-m-d') }}</td>
+                                <td>
+                                {% if app.user == stacker %}
+                                    <a href="{{ path('asu_stack_win_complete', { 'win': win.id }) }}" class="button button-basic-green button-small">Complete</a>
+                                    <a href="{{ path('asu_stack_win_update', { 'win': win.id }) }}" class="button button-basic-blue button-small">Edit</a>
+                                {% endif %}
+                                    <a href="{{ path('asu_stack_win_details', { 'win': win.id }) }}" class="button button-basic button-small">Details</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="box">
+                <div class="box-head">Finished Wins</div>
+                <div class="box-body box-body-nopadding">
+                {% block closedToolbar %}
+                {% endblock %}
+                    <table class="table table-nomargin">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>XP</th>
+                                <th>Category</th>
+                                <th>Date Created</th>
+                                <th>Date Completed</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for win in stacker.wins if win.dateCompleted is not null %}
+                            <tr>
+                                <td>{{ win.title }}</td>
+                                <td>{{ win.xp }}</td>
+                                <td>{{ win.getCategory(true) }}</td>
+                                <td>{{ (win.dateCreated is not null) ? win.dateCreated|date('Y-m-d') }}</td>
+                                <td>{{ win.dateCompleted|date('Y-m-d') }}</td>
+                                <td>
+                                {% if app.user == stacker %}
+                                    <a href="{{ path('asu_stack_win_update', { 'win': win.id }) }}" class="button button-basic-blue button-small">Edit</a>
+                                {% endif %}
+                                    <a href="{{ path('asu_stack_win_details', { 'win': win.id }) }}" class="button button-basic button-small">Details</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
