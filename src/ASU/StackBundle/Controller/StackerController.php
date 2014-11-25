@@ -66,8 +66,9 @@ class StackerController extends Controller {
             // Initialize a new Stacker
             $stacker = new Stacker();
             
-            // Add the role to the Stacker
+            // Add the role to the Stacker & enable
             $stacker->addRole($role);
+            $stacker->setEnabled(true);
         }
 
         // Create the Win form & handle the request
@@ -78,13 +79,13 @@ class StackerController extends Controller {
         if ($form->isValid()) {
             // Grab the entity manager
             $em = $this->getDoctrine()->getManager();
-
+            
             // Persist the changes to the database
             $em->persist($stacker);
             $em->flush();
             
             // Display a notification
-            $this->get('session')->getFlashBag()->add('success', "Stacker added successfully");
+            $this->get('session')->getFlashBag()->add('success', "Registered successfully");
 
             // Redirect to the details page of the new Loan
             return $this->redirect($this->generateUrl('asu_asset_default_index', array()));

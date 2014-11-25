@@ -161,5 +161,47 @@ class Stacker extends \ASU\SecurityBundle\Entity\User {
         
         return $this;
     }
+    
+    /**
+     * Get first name
+     * 
+     * @return string
+     */
+    public function getFirstName() {
+        return $this->firstName;
+    }
+
+    /**
+     * Set first name
+     * 
+     * @param string $firstName
+     * @return Stacker
+     */
+    public function setFirstName($firstName) {
+        $this->firstName = $firstName;
+        
+        return $this;
+    }
+
+    /**
+     * Get last name
+     * 
+     * @return string
+     */
+    public function getLastName() {
+        return $this->lastName;
+    }
+
+    /**
+     * Set last name
+     * 
+     * @param string $lastName
+     * @return Stacker
+     */
+    public function setLastName($lastName) {
+        $this->lastName = $lastName;
+        
+        return $this;
+    }
 
 }

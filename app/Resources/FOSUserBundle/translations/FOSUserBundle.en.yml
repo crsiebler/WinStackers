@@ -1,8 +1,0 @@
-imports: 
-  - { resource: "@FOSUserBundle/Resources/config/translations/FOSUserBundle.en.yml" }
-
-
-security:
-    login:
-        email: Email
-        password: Password

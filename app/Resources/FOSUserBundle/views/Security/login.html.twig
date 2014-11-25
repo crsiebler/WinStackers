@@ -17,24 +17,22 @@
                         </div>
                     {% endif %}
                     <div class="email">
-                        <input type="text" name="_username" placeholder="{{ 'security.login.email'|trans }}" class='input-block-level required' require="required">
+                        <input type="text" name="_username" placeholder="Email" class='input-block-level required' require="required">
                     </div>
                     <div class="pw">
-                        <input type="password" name="_password" placeholder="{{ 'security.login.password'|trans }}" class='input-block-level required' required="required">
+                        <input type="password" name="_password" placeholder="Password" class='input-block-level required' required="required">
                     </div>
                     <div style="text-align: left;">
                         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
                         <input type="checkbox" style="width: 15px; vertical-align: top; display: inline-block;" name="_remember_me" /> 
                         <label style="display: inline-block; vertical-align: middle; margin-top: 0px;">
                             Remember Me
-                            {#{{ 'security.login.remember_me'|trans }}#}
                         </label>
                     </div>
 
                     <button type="submit" value="Sign In" class='button button-basic-darkblue btn-block'>Sign In</button>
                 </form>
             </div>
-            {#<a href="{{ path("fos_user_resetting_request") }}" class='pw-link'>Forgot your <span>password</span>? <i class="icon-arrow-right"></i></a>#}
             <a href="{{ path('asu_stack_stacker_create') }}" class="pw-link">No Account? <span>Sign up</span> now! <i class="icon-arrow-right"></i></a>
         </div>
     </body>
