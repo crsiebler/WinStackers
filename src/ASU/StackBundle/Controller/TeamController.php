@@ -43,12 +43,8 @@ class TeamController extends Controller {
      * @Template("ASUStackBundle:Team:list.html.twig")
      */
     public function memberAction(Stacker $stacker) {
-        $em = $this->getDoctrine()->getManager();
-        
-        $teams = $em->getRepository('ASUStackBundle:Team')->findAll();
-        
         return array(
-            'teams' => $teams,
+            'teams' => $stacker->getTeams(),
         );
     }
     
@@ -61,12 +57,12 @@ class TeamController extends Controller {
      */
     public function createAction(Request $request, Team $team = null) {
         // Grab the logged in user
-        $user = $this->get('security.context')->getToken()->getUser();
+        $stacker = $this->get('security.context')->getToken()->getUser();
         
         // Check if the win is set
         if (!isset($team)) {
             // Initialize a new Win
-            $team = new Team($user);
+            $team = new Team($stacker);
         }
 
         // Create the Win form & handle the request
@@ -80,6 +76,15 @@ class TeamController extends Controller {
 
             // Persist the changes to the database
             $em->persist($team);
+            $em->flush();
+            
+            // Add the current user to the list of members
+            $team->getMembers()->add($stacker);
+            $stacker->getTeams()->add($team);
+            
+            // Persist the changes to the database
+            $em->persist($team);
+            $em->persist($stacker);
             $em->flush();
 
             // Display a notification

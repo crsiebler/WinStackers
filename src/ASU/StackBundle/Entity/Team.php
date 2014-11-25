@@ -231,6 +231,27 @@ class Team {
     }
 
     /**
+     * Get members
+     * 
+     * @return ArrayCollection<Stacker>
+     */
+    public function getMembers() {
+        return $this->members;
+    }
+
+    /**
+     * Set members
+     * 
+     * @param ArrayCollection<Stacker> $members
+     * @return Team
+     */
+    public function setMembers($members) {
+        $this->members = $members;
+        
+        return $this;
+    }
+
+    /**
      * Get wins
      * 
      * @return type
