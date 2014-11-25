@@ -50,7 +50,7 @@ class Team {
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateCreated", type="date", nullable=false)
+     * @ORM\Column(name="date_created", type="date", nullable=false)
      */
     private $dateCreated;
 

@@ -53,14 +53,14 @@ class Win {
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateCreated", type="date", nullable=false)
+     * @ORM\Column(name="date_created", type="date", nullable=false)
      */
     private $dateCreated;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateCompleted", type="date", nullable=true)
+     * @ORM\Column(name="date_completed", type="date", nullable=true)
      */
     private $dateCompleted;
 

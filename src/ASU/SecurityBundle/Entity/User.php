@@ -8,7 +8,7 @@ use Misd\PhoneNumberBundle\Validator\Constraints\PhoneNumber as AssertPhoneNumbe
 /**
  * User
  *
- * @ORM\Entity
+ * @ORM\MappedSuperclass
  */
 class User extends \KMJ\ToolkitBundle\Entity\User {
 
