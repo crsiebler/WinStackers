@@ -154,7 +154,7 @@ class StackerController extends Controller {
         $this->get('session')->getFlashBag()->add('success', "Friend added");
         
         // Redirect to the details page of the new Loan
-        return $this->redirect($this->generateUrl('asu_stack_stacker_friends', array('stacker' => $stacker->getId())));
+        return $this->redirect($this->generateUrl('asu_stack_stacker_friends', array('stacker' => $user->getId())));
     }
     
     /**
@@ -183,7 +183,7 @@ class StackerController extends Controller {
         $this->get('session')->getFlashBag()->add('success', "Friend removed");
         
         // Redirect to the details page of the new Loan
-        return $this->redirect($this->generateUrl('asu_stack_stacker_friends', array('stacker' => $stacker->getId())));
+        return $this->redirect($this->generateUrl('asu_stack_stacker_friends', array('stacker' => $user->getId())));
     }
 
 }

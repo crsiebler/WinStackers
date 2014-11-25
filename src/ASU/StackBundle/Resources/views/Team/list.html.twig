@@ -43,12 +43,19 @@
                                 <td>
                                 {% if app.user in team.members %}
                                     <a href="{{ path('asu_stack_team_leave', { 'team': team.id, 'stacker': app.user.id }) }}" class="button button-basic-red button-small">Leave Team</a>
+                                    
                                 {% else %}
                                     <a href="{{ path('asu_stack_team_join', { 'team': team.id, 'stacker': app.user.id }) }}" class="button button-basic-green button-small">Join Team</a>
                                 {% endif %}
+                                {% if app.user.id == team.creator.id %}
                                     <a href="{{ path('asu_stack_team_update', { 'team': team.id }) }}" class="button button-basic-blue button-small">Edit</a>
+                                {% endif %}
                                     <a href="{{ path('asu_stack_team_details', { 'team': team.id }) }}" class="button button-basic button-small">Details</a>
                                 </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="1">No Teams</td>
                             </tr>
                         {% endfor %}
                         </tbody>

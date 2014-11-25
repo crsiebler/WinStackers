@@ -66,6 +66,10 @@
                                     <a href="{{ path('asu_stack_team_details', { "team": team.id }) }}">{{ team.name }}</a>
                                 </td>
                             </tr>
+                        {% else %}
+                            <tr>
+                                <td>No Teams :(</td>
+                            </tr>
                         {% endfor %}
                         </tbody>
                     </table>
@@ -83,6 +87,10 @@
                                 <td>
                                     <a href="{{ path('asu_stack_stacker_details', { "stacker": friend.id }) }}">{{ friend }}</a>
                                 </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td>No Friends :(</td>
                             </tr>
                         {% endfor %}
                         </tbody>
@@ -123,6 +131,10 @@
                                     <a href="{{ path('asu_stack_win_details', { 'win': win.id }) }}" class="button button-basic button-small">Details</a>
                                 </td>
                             </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="4">No Incomplete Wins</td>
+                            </tr>
                         {% endfor %}
                         </tbody>
                     </table>
@@ -162,6 +174,10 @@
                                 {% endif %}
                                     <a href="{{ path('asu_stack_win_details', { 'win': win.id }) }}" class="button button-basic button-small">Details</a>
                                 </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="4">No Completed Wins</td>
                             </tr>
                         {% endfor %}
                         </tbody>

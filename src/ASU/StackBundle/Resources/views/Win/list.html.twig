@@ -46,6 +46,10 @@
                                     <a href="{{ path('asu_stack_win_details', { 'win': win.id }) }}" class="button button-basic button-small">Details</a>
                                 </td>
                             </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="4">No Incomplete Wins</td>
+                            </tr>
                         {% endfor %}
                         </tbody>
                     </table>
@@ -83,6 +87,10 @@
                                     <a href="{{ path('asu_stack_win_update', { 'win': win.id }) }}" class="button button-basic-blue button-small">Edit</a>
                                     <a href="{{ path('asu_stack_win_details', { 'win': win.id }) }}" class="button button-basic button-small">Details</a>
                                 </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="4">No Completed Wins</td>
                             </tr>
                         {% endfor %}
                         </tbody>

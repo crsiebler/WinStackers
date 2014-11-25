@@ -129,8 +129,12 @@ class WinController extends Controller {
         // Display a notification
         $this->get('session')->getFlashBag()->add('success', "Win completed");
 
-        // Redirect to the details page of the new Loan
-        return $this->redirect($this->generateUrl('asu_stack_win_list', array('stacker' => $win->getStacker()->getId())));
+        // Redirect to the details page of the Win
+        if ($win->getStacker() != null) {
+            return $this->redirect($this->generateUrl('asu_stack_win_list', array('stacker' => $win->getStacker()->getId())));
+        } else if ($win->getTeam() != null) {
+            return $this->redirect($this->generateUrl('asu_stack_team_details', array('team' => $win->getTeam()->getId())));
+        }
     }
 
 }
