@@ -108,5 +108,29 @@ class WinController extends Controller {
             'win' => $win,
         );
     }
+    
+    /**
+     * Complete a win.
+     * 
+     * @Route("/complete/{win}", requirements={"win": "\d+"})
+     * @Method("GET")
+     * @Template()
+     */
+    public function completeAction(Win $win) {
+        // Grab the entity manager
+        $em = $this->getDoctrine()->getManager();
+            
+        $win->setDateCompleted(new \DateTime('NOW'));
+        
+        // Persist the changes to the database
+        $em->persist($win);
+        $em->flush();
+
+        // Display a notification
+        $this->get('session')->getFlashBag()->add('success', "Win completed");
+
+        // Redirect to the details page of the new Loan
+        return $this->redirect($this->generateUrl('asu_stack_win_list', array('stacker' => $win->getStacker()->getId())));
+    }
 
 }

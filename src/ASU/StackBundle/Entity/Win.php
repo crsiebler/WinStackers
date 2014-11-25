@@ -109,8 +109,10 @@ class Win {
      * Constructor
      * 
      * @param Stacker $stacker
+     * @param Team $team
      */
-    public function __construct(Stacker $stacker) {
+    public function __construct(Stacker $stacker = null, Team $team = null) {
+        $this->team = $team;
         $this->stacker = $stacker;
         $this->dateCreated = new \DateTime('NOW'); // Set to today's date
         $this->goals = new ArrayCollection();

@@ -21,8 +21,8 @@
             <div class="box">
                 <div class="box-head">Incomplete Wins</div>
                 <div class="box-body box-body-nopadding">
-                    {% block openToolbar %}
-                    {% endblock %}
+                {% block openToolbar %}
+                {% endblock %}
                     <table class="table table-nomargin">
                         <thead>
                             <tr>
@@ -34,13 +34,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                        {% for win in wins %}
+                        {% for win in wins if win.dateCompleted is null %}
                             <tr>
                                 <td>{{ win.title }}</td>
                                 <td>{{ win.xp }}</td>
                                 <td>{{ win.getCategory(true) }}</td>
                                 <td>{{ (win.dateCreated is not null) ? win.dateCreated|date('Y-m-d') }}</td>
                                 <td>
+                                    <a href="{{ path('asu_stack_win_complete', { 'win': win.id }) }}" class="button button-basic-green button-small">Complete</a>
+                                    <a href="{{ path('asu_stack_win_update', { 'win': win.id }) }}" class="button button-basic-blue button-small">Edit</a>
+                                    <a href="{{ path('asu_stack_win_details', { 'win': win.id }) }}" class="button button-basic button-small">Details</a>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -55,8 +58,8 @@
             <div class="box">
                 <div class="box-head">Finished Wins</div>
                 <div class="box-body box-body-nopadding">
-                    {% block closedToolbar %}
-                    {% endblock %}
+                {% block closedToolbar %}
+                {% endblock %}
                     <table class="table table-nomargin">
                         <thead>
                             <tr>
@@ -77,6 +80,8 @@
                                 <td>{{ (win.dateCreated is not null) ? win.dateCreated|date('Y-m-d') }}</td>
                                 <td>{{ win.dateCompleted|date('Y-m-d') }}</td>
                                 <td>
+                                    <a href="{{ path('asu_stack_win_update', { 'win': win.id }) }}" class="button button-basic-blue button-small">Edit</a>
+                                    <a href="{{ path('asu_stack_win_details', { 'win': win.id }) }}" class="button button-basic button-small">Details</a>
                                 </td>
                             </tr>
                         {% endfor %}
