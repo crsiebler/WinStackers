@@ -1,0 +1,49 @@
+{% if editMode is not defined %}
+    {% set editMode = false %}
+{% endif %}
+
+{% extends "ASUAssetBundle::layout.html.twig" %}
+
+{% form_theme form "ASUAssetBundle::forms.html.twig" %}
+
+{% block title %}{{ parent() }} | Win | New{% endblock %}
+
+{% block breadcrumbs %}
+    <li>
+        <a href="{{ path('asu_asset_default_index') }}">Home</a>
+        <span class="divider">/</span>
+    </li>
+    <li>
+        <a href="{{ path('asu_stack_win_list', { 'stacker': app.user.id }) }}">Wins</a>
+        <span class="divider">/</span>
+    </li>
+    <li class="active">
+        New
+    </li>
+{% endblock %}
+
+{% block pageHeaderTitle %}Win Creation{% endblock %}
+
+{% block content %}
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="box">
+                <div class="box-head">Win Information</div>
+                <div class="box-body box-body-nopadding">
+                    {{ form_start(form, { attr: { class: "form-horizontal form-bordered" },}) }}
+                    {{ form_row(form.title) }}
+                    {{ form_row(form.xp) }}
+                    {{ form_row(form.category) }}
+                    {{ form_row(form.description) }}
+                    <div class="form-actions" style="border-top: 1px solid lightgray">
+                        <a href="{{ app.request.headers.get('referer') }}" class="button button-basic">Back</a>
+                        <button type="reset" class="button button-basic">Reset</button>
+                        <button type="submit" class="button button-basic-blue">{{ (editMode) ? "Update":"Create" }}</button>
+                    </div>
+                    {{ form_rest(form) }}
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -8,8 +8,8 @@
             <li class="{% if 'asu_stack_win_list' == app.request.attributes.get('_route') %}active{% endif %}">
                 <a href="{{ path('asu_stack_win_list', { 'stacker': app.user.id }) }}">My Wins</a>
             </li>
-            <li class="{% if 'asu_stack_win_update' == app.request.attributes.get('_route') %}active{% endif %}">
-                <a href="{{ path('asu_stack_win_update') }}">Create</a>
+            <li class="{% if 'asu_stack_win_create' == app.request.attributes.get('_route') %}active{% endif %}">
+                <a href="{{ path('asu_stack_win_create') }}">Create</a>
             </li>
         </ul
     </li>
@@ -22,8 +22,8 @@
             <li class="{% if 'asu_stack_team_member' == app.request.attributes.get('_route') %}active{% endif %}">
                 <a href="{{ path('asu_stack_team_member', { 'stacker': app.user.id }) }}">My Teams</a>
             </li>
-            <li class="{% if 'asu_stack_team_update' in app.request.attributes.get('_route') %}active{% endif %}">
-                <a href="{{ path('asu_stack_team_update') }}">Create</a>
+            <li class="{% if 'asu_stack_team_create' in app.request.attributes.get('_route') %}active{% endif %}">
+                <a href="{{ path('asu_stack_team_create') }}">Create</a>
             </li>
         </ul>
     </li>

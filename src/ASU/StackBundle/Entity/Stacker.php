@@ -2,6 +2,7 @@
 
 namespace ASU\StackBundle\Entity;
 
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -12,6 +13,13 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="ASU\StackBundle\Repository\StackerRepository")
  */
 class Stacker extends \ASU\SecurityBundle\Entity\User {
+    
+    /**
+     * @var \DateTime
+     * 
+     * @ORM\Column(name="date_created", type="date", nullable=false)
+     */
+    private $dateCreated;
 
     /**
      * @var ArrayCollection<Win>
@@ -55,6 +63,7 @@ class Stacker extends \ASU\SecurityBundle\Entity\User {
     public function __construct() {
         parent::__construct();
         
+        $this->dateCreated = new \DateTime('NOW'); // Set to today's date
         $this->wins = new ArrayCollection();
         $this->friends = new ArrayCollection();
         $this->teams = new ArrayCollection();
@@ -67,6 +76,27 @@ class Stacker extends \ASU\SecurityBundle\Entity\User {
      */
     public function __toString() {
         return $this->username;
+    }
+
+    /**
+     * Get dateCreated
+     * 
+     * @return type
+     */
+    public function getDateCreated() {
+        return $this->dateCreated;
+    }
+
+    /**
+     * Set dateCreated
+     * 
+     * @param \DateTime $dateCreated
+     * @return Stacker
+     */
+    public function setDateCreated(\DateTime $dateCreated) {
+        $this->dateCreated = $dateCreated;
+        
+        return $this;
     }
 
     /**

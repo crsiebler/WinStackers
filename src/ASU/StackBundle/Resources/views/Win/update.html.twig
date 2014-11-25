@@ -1,19 +1,27 @@
-{% extends "ASUAssetBundle::layout.html.twig" %}
+{% set editMode = true %}
 
-{% block title %}{{ parent() }} | Win | Update{% endblock %}
+{% extends "ASUStackBundle:Win:create.html.twig" %}
+
+{% block title %}ASU | Win | Edit{% endblock %}
 
 {% block breadcrumbs %}
     <li>
         <a href="{{ path('asu_asset_default_index') }}">Home</a>
         <span class="divider">/</span>
     </li>
+    <li>
+        <a href="{{ path('asu_stack_win_list', { 'stacker': app.user.id }) }}">Wins</a>
+        <span class="divider">/</span>
+    </li>
+    {#
+    <li>
+        <a href="{{ path('asu_stack_win_details', { 'win': win.id }) }}">Win Details</a>
+        <span class="divider">/</span>
+    </li>
+    #}
     <li class="active">
-        Wins
+        Edit
     </li>
 {% endblock %}
 
-{% block pageHeaderTitle %}Wins{% endblock %}
-
-{% block content %}
-    
-{% endblock %}
+{% block pageHeaderTitle %}Win Edit{% endblock %}

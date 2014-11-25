@@ -2,6 +2,7 @@
 
 namespace ASU\StackBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -93,8 +94,12 @@ class Team {
     
     /**
      * Constructor
+     * 
+     * @param Stacker $stacker
      */
-    public function __construct() {
+    public function __construct(Stacker $stacker) {
+        $this->creator = $stacker;
+        $this->dateCreated = new \DateTime('NOW'); // Set to today's date
         $this->wins = new ArrayCollection();
         $this->members = new ArrayCollection();
     }

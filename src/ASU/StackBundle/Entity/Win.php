@@ -2,6 +2,7 @@
 
 namespace ASU\StackBundle\Entity;
 
+use ASU\StackBundle\Entity\Stacker;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -106,8 +107,12 @@ class Win {
     
     /**
      * Constructor
+     * 
+     * @param Stacker $stacker
      */
-    public function __construct() {
+    public function __construct(Stacker $stacker) {
+        $this->stacker = $stacker;
+        $this->dateCreated = new \DateTime('NOW'); // Set to today's date
         $this->goals = new ArrayCollection();
     }
     

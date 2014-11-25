@@ -28,7 +28,6 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Genre</th>
-                                <th>Description</th>
                                 <th>Created By</th>
                                 <th>Date Created</th>
                                 <th>Actions</th>
@@ -39,7 +38,6 @@
                             <tr>
                                 <td>{{ team.name }}</td>
                                 <td>{{ team.getGenre(true) }}</td>
-                                <td>{{ team.description }}</td>
                                 <td>{{ team.creator }}</td>
                                 <td>{{ (team.dateCreated is not null) ? team.dateCreated|date('Y-m-d') }}</td>
                                 <td>
