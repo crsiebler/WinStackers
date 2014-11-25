@@ -1,8 +1,7 @@
 <?php
 
-namespace ASU\SecurityBundle\Form;
+namespace ASU\StackBundle\Form;
 
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class StackerType extends \KMJ\ToolkitBundle\Form\UserType {
@@ -11,7 +10,6 @@ class StackerType extends \KMJ\ToolkitBundle\Form\UserType {
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver) {
-        parent::setDefaultOptions($resolver);
         $resolver->setDefaults(array(
             'data_class' => 'ASU\StackBundle\Entity\Stacker'
         ));
