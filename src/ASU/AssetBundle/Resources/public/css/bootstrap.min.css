@@ -1533,7 +1533,7 @@ table th[class*="span"],
     *margin-right: .3em;
     line-height: 14px;
     vertical-align: text-top;
-    background-image: url("/bundles/irtasset/images/glyphicons-halflings.png");
+    background-image: url("/bundles/asuasset/images/glyphicons-halflings.png");
     background-position: 14px 14px;
     background-repeat: no-repeat;
 }
@@ -1553,7 +1553,7 @@ table th[class*="span"],
 .dropdown-submenu:hover>a>[class^="icon-"],
 .dropdown-submenu:focus>a>[class^="icon-"],
 .dropdown-submenu:hover>a>[class*=" icon-"],
-.dropdown-submenu:focus>a>[class*=" icon-"] { background-image: url("/bundles/irtasset/images/glyphicons-halflings-white.png") }
+.dropdown-submenu:focus>a>[class*=" icon-"] { background-image: url("/bundles/asuasset/images/glyphicons-halflings-white.png") }
 .icon-glass { background-position: 0 0 }
 .icon-music { background-position: -24px 0 }
 .icon-search { background-position: -48px 0 }

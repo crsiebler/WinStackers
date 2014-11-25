@@ -1,4 +1,4 @@
-.ms-container { background: transparent url('/bundles/irtasset/images/switch.png') no-repeat 170px 80px }
+.ms-container { background: transparent url('/bundles/asuasset/images/switch.png') no-repeat 170px 80px }
 .ms-container:after {
     content: ".";
     display: block;

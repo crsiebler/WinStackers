@@ -6,7 +6,7 @@ div.uploader,
 div.uploader span.action,
 div.uni-button,
 div.uni-button span {
-    background-image: url("/bundles/irtasset/images/sprite.png");
+    background-image: url("/bundles/asuasset/images/sprite.png");
     background-repeat: no-repeat;
     -webkit-font-smoothing: antialiased;
 }
@@ -39,7 +39,7 @@ div.uni-button span {
     padding: 0;
 }
 .highContrastDetect {
-    background: url("/bundles/irtasset/images/bg-input.png") repeat-x 0 0;
+    background: url("/bundles/asuasset/images/bg-input.png") repeat-x 0 0;
     width: 0px;
     height: 0px;
 }
@@ -60,7 +60,7 @@ input.password,
 select.uniform-multiselect,
 textarea.uniform {
     padding: 3px;
-    background: url("/bundles/irtasset/images/bg-input.png") repeat-x 0 0;
+    background: url("/bundles/asuasset/images/bg-input.png") repeat-x 0 0;
     outline: 0;
 }
 div.checker input,
@@ -84,7 +84,7 @@ input.number:focus,
 input.color:focus,
 input.password:focus,
 select.uniform-multiselect:focus,
-textarea.uniform:focus { background: url("/bundles/irtasset/images/bg-input-focus.png") repeat-x 0 0 }
+textarea.uniform:focus { background: url("/bundles/asuasset/images/bg-input-focus.png") repeat-x 0 0 }
 div.selector {
     background-position: 0 -130px;
     line-height: 26px;

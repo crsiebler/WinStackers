@@ -30,7 +30,7 @@
 .elfinder-resize-handle-hline,
 .elfinder-resize-handle-vline {
     position: absolute;
-    background-image: url("/bundles/irtasset/images/elfinder/crop.gif");
+    background-image: url("/bundles/asuasset/images/elfinder/crop.gif");
 }
 .elfinder-resize-handle-hline {
     width: 100%;
@@ -122,7 +122,7 @@
     left: 50%;
     margin-left: -100px;
     text-align: center;
-    background: url(/bundles/irtasset/images/elfinder/progress.gif) center bottom repeat-x;
+    background: url(/bundles/asuasset/images/elfinder/progress.gif) center bottom repeat-x;
 }
 .elfinder-resize-row {
     margin-bottom: 7px;
@@ -203,7 +203,7 @@
     height: 96px;
     float: left;
     margin-right: 1em;
-    background: url('/bundles/irtasset/images/elfinder/logo.png') center center no-repeat;
+    background: url('/bundles/asuasset/images/elfinder/logo.png') center center no-repeat;
 }
 .elfinder-help h3 {
     font-size: 1.5em;
@@ -278,7 +278,7 @@
     position: absolute;
     width: 16px;
     height: 16px;
-    background-image: url(/bundles/irtasset/images/elfinder/toolbar.png);
+    background-image: url(/bundles/asuasset/images/elfinder/toolbar.png);
     background-repeat: no-repeat;
     background-position: 0 -528px;
 }
@@ -297,7 +297,7 @@
     height: 16px;
     left: 43px;
     top: 55px;
-    background: url('/bundles/irtasset/images/elfinder/toolbar.png') 0 -544px no-repeat;
+    background: url('/bundles/asuasset/images/elfinder/toolbar.png') 0 -544px no-repeat;
     display: none;
 }
 .elfinder-drag-helper-plus .elfinder-drag-helper-icon-plus { display: block }
@@ -369,7 +369,7 @@
 .elfinder-contextmenu-arrow {
     width: 16px;
     height: 16px;
-    background: url('/bundles/irtasset/images/elfinder/arrows-normal.png') 5px 4px no-repeat;
+    background: url('/bundles/asuasset/images/elfinder/arrows-normal.png') 5px 4px no-repeat;
 }
 .elfinder-contextmenu-ltr .elfinder-contextmenu-arrow { right: 5px }
 .elfinder-contextmenu-rtl .elfinder-contextmenu-arrow {
@@ -455,7 +455,7 @@
     width: 48px;
     height: 48px;
     margin: 0 auto;
-    background: url('/bundles/irtasset/images/elfinder/icons-big.png') 0 0 no-repeat;
+    background: url('/bundles/asuasset/images/elfinder/icons-big.png') 0 0 no-repeat;
     -moz-background-clip: padding;
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
@@ -565,7 +565,7 @@
     position: absolute;
     top: 50%;
     margin-top: -8px;
-    background-image: url(/bundles/irtasset/images/elfinder/icons-small.png);
+    background-image: url(/bundles/asuasset/images/elfinder/icons-small.png);
 }
 .elfinder-ltr .elfinder-cwd-view-list .elfinder-cwd-icon { left: 0 }
 .elfinder-rtl .elfinder-cwd-view-list .elfinder-cwd-icon { right: 0 }
@@ -620,7 +620,7 @@
     left: 12px;
     top: 50%;
     margin-top: -15px;
-    background: url("/bundles/irtasset/images/elfinder/dialogs.png") 0 0 no-repeat;
+    background: url("/bundles/asuasset/images/elfinder/dialogs.png") 0 0 no-repeat;
 }
 .elfinder-rtl .elfinder-dialog-icon {
     left: auto;
@@ -659,7 +659,7 @@
 .elfinder-notify-progress {
     width: 100%;
     height: 8px;
-    background: url(/bundles/irtasset/images/elfinder/progress.gif) center center repeat-x;
+    background: url(/bundles/asuasset/images/elfinder/progress.gif) center center repeat-x;
 }
 .elfinder-notify-progressbar,
 .elfinder-notify-progress {
@@ -716,7 +716,7 @@
     width: 14px;
     height: 14px;
     float: left;
-    background: url("/bundles/irtasset/images/elfinder/spinner-mini.gif") center center no-repeat;
+    background: url("/bundles/asuasset/images/elfinder/spinner-mini.gif") center center no-repeat;
     margin: 0 5px;
 }
 .elfinder-upload-dropbox {
@@ -817,10 +817,10 @@
     display: none;
     top: 50%;
     margin-top: -8px;
-    background-image: url("/bundles/irtasset/images/elfinder/arrows-normal.png");
+    background-image: url("/bundles/asuasset/images/elfinder/arrows-normal.png");
     background-repeat: no-repeat;
 }
-.ui-state-active .elfinder-navbar-arrow { background-image: url("/bundles/irtasset/images/elfinder/arrows-active.png") }
+.ui-state-active .elfinder-navbar-arrow { background-image: url("/bundles/asuasset/images/elfinder/arrows-active.png") }
 .elfinder-navbar-collapsed .elfinder-navbar-arrow { display: block }
 .elfinder-ltr .elfinder-navbar-collapsed .elfinder-navbar-arrow {
     background-position: 0 4px;
@@ -838,7 +838,7 @@
     position: absolute;
     top: 50%;
     margin-top: -8px;
-    background-image: url("/bundles/irtasset/images/elfinder/toolbar.png");
+    background-image: url("/bundles/asuasset/images/elfinder/toolbar.png");
     background-repeat: no-repeat;
     background-position: 0 -16px;
 }
@@ -859,7 +859,7 @@
     display: block;
     top: 50%;
     margin-top: -7px;
-    background: url("/bundles/irtasset/images/elfinder/spinner-mini.gif") center center no-repeat;
+    background: url("/bundles/asuasset/images/elfinder/spinner-mini.gif") center center no-repeat;
 }
 .elfinder-ltr .elfinder-navbar-spinner {
     left: 0;
@@ -879,7 +879,7 @@
 .elfinder-rtl .elfinder-navbar .elfinder-symlink { right: 8px }
 .elfinder-navbar .ui-resizable-handle {
     width: 12px;
-    background: url('/bundles/irtasset/images/elfinder/resize.png') center center no-repeat;
+    background: url('/bundles/asuasset/images/elfinder/resize.png') center center no-repeat;
     left: 0;
 }
 .elfinder-nav-handle-icon {
@@ -894,7 +894,7 @@
 .elfinder-place-drag .elfinder-navbar-dir { font-size: .9em }
 .elfinder-quicklook {
     position: absolute;
-    background: url("/bundles/irtasset/images/elfinder/quicklook-bg.png");
+    background: url("/bundles/asuasset/images/elfinder/quicklook-bg.png");
     display: none;
     overflow: hidden;
     border-radius: 7px;
@@ -907,7 +907,7 @@
     height: 14px;
     right: 5px;
     bottom: 3px;
-    background: url("/bundles/irtasset/images/elfinder/toolbar.png") 0 -496px no-repeat;
+    background: url("/bundles/asuasset/images/elfinder/toolbar.png") 0 -496px no-repeat;
 }
 .elfinder-quicklook-fullscreen {
     border-radius: 0;
@@ -1016,7 +1016,7 @@
     height: 32px;
     margin: 0 7px;
     float: left;
-    background: url("/bundles/irtasset/images/elfinder/quicklook-icons.png") 0 0 no-repeat;
+    background: url("/bundles/asuasset/images/elfinder/quicklook-icons.png") 0 0 no-repeat;
 }
 .elfinder-quicklook-navbar-icon-fullscreen { background-position: 0 -64px }
 .elfinder-quicklook-navbar-icon-fullscreen-off { background-position: 0 -96px }
@@ -1161,7 +1161,7 @@ embed.elfinder-quicklook-preview-audio {
     width: 16px;
     height: 16px;
     display: block;
-    background: url('/bundles/irtasset/images/elfinder/toolbar.png') no-repeat;
+    background: url('/bundles/asuasset/images/elfinder/toolbar.png') no-repeat;
 }
 .elfinder-button-icon-home { background-position: 0 0 }
 .elfinder-button-icon-back { background-position: 0 -112px }
@@ -1215,7 +1215,7 @@ embed.elfinder-quicklook-preview-audio {
     left: 2px;
     top: 50%;
     margin-top: -8px;
-    background: url("/bundles/irtasset/images/elfinder/toolbar.png") 0 -594px no-repeat;
+    background: url("/bundles/asuasset/images/elfinder/toolbar.png") 0 -594px no-repeat;
     display: none;
 }
 .elfinder-button-menu-item-selected .elfinder-menu-item-sort-dir { display: block }

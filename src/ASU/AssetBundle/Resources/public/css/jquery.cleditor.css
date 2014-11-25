@@ -17,7 +17,7 @@
     resize: none;
     outline: none;
 }
-.cleditorToolbar { background: url('/bundles/irtasset/images/cl_toolbar.gif') repeat }
+.cleditorToolbar { background: url('/bundles/asuasset/images/cl_toolbar.gif') repeat }
 .cleditorGroup {
     float: left;
     height: 26px;
@@ -27,7 +27,7 @@
     width: 24px;
     height: 24px;
     margin: 1px 0 1px 0;
-    background: url('/bundles/irtasset/images/cl_buttons.gif');
+    background: url('/bundles/asuasset/images/cl_buttons.gif');
 }
 .cleditorDisabled {
     opacity: 0.3;

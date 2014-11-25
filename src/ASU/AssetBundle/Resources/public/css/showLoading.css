@@ -1,7 +1,7 @@
 .loading-indicator {
     height: 8px;
     width: 26px;
-    background: url( '/bundles/irtasset/images/loading.gif' );
+    background: url( '/bundles/asuasset/images/loading.gif' );
     background-repeat: no-repeat;
     background-position: center center;
     display: block;
