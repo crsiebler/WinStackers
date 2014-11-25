@@ -4,7 +4,7 @@ asu_stack:
     prefix:   /
 
 asu_asset:
-    resource: "@IRTAssetBundle/Controller/"
+    resource: "@ASUAssetBundle/Controller/"
     type:     annotation
     prefix:   /
     

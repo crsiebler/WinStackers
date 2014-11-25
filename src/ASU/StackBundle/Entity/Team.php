@@ -89,7 +89,7 @@ class Team {
      * 
      * @ORM\OneToMany(
      *      targetEntity="ASU\StackBundle\Entity\Win",
-     *      mappedBy="stacker",
+     *      mappedBy="team",
      *      cascade={"ALL"},
      *      orphanRemoval=true,
      *      fetch="LAZY"
