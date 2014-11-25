@@ -33,6 +33,9 @@
             <li class="{% if 'asu_stack_stacker_list' == app.request.attributes.get('_route') %}active{% endif %}">
                 <a href="{{ path('asu_stack_stacker_list') }}">All Stackers</a>
             </li>
+            <li class="{% if 'asu_stack_stacker_details' == app.request.attributes.get('_route') %}active{% endif %}">
+                <a href="{{ path('asu_stack_stacker_details', { 'stacker': app.user.id }) }}">View Profile</a>
+            </li>
             <li class="{% if 'asu_stack_stacker_friends' == app.request.attributes.get('_route') %}active{% endif %}">
                 <a href="{{ path('asu_stack_stacker_friends', { 'stacker': app.user.id }) }}">My Friends</a>
             </li>

@@ -41,9 +41,9 @@
                                 <td>{{ win.getCategory(true) }}</td>
                                 <td>{{ (win.dateCreated is not null) ? win.dateCreated|date('Y-m-d') }}</td>
                                 <td>
-                                    <a href="{{ path('asu_stack_win_complete', { 'win': win.id }) }}" class="button button-basic-green button-small">Complete</a>
-                                    <a href="{{ path('asu_stack_win_update', { 'win': win.id }) }}" class="button button-basic-blue button-small">Edit</a>
                                     <a href="{{ path('asu_stack_win_details', { 'win': win.id }) }}" class="button button-basic button-small">Details</a>
+                                    <a href="{{ path('asu_stack_win_update', { 'win': win.id }) }}" class="button button-basic-blue button-small">Edit</a>
+                                    <a href="{{ path('asu_stack_win_complete', { 'win': win.id }) }}" class="button button-basic-green button-small">Complete</a>
                                 </td>
                             </tr>
                         {% else %}
@@ -84,8 +84,8 @@
                                 <td>{{ (win.dateCreated is not null) ? win.dateCreated|date('Y-m-d') }}</td>
                                 <td>{{ win.dateCompleted|date('Y-m-d') }}</td>
                                 <td>
-                                    <a href="{{ path('asu_stack_win_update', { 'win': win.id }) }}" class="button button-basic-blue button-small">Edit</a>
                                     <a href="{{ path('asu_stack_win_details', { 'win': win.id }) }}" class="button button-basic button-small">Details</a>
+                                    <a href="{{ path('asu_stack_win_update', { 'win': win.id }) }}" class="button button-basic-blue button-small">Edit</a>
                                 </td>
                             </tr>
                         {% else %}

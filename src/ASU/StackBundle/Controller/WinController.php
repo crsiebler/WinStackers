@@ -69,7 +69,7 @@ class WinController extends Controller {
             $this->get('session')->getFlashBag()->add('success', "Win added successfully");
 
             // Redirect to the details page of the new Loan
-            return $this->redirect($this->generateUrl('asu_stack_win_details', array('win' => $win->getId())));
+            return $this->redirect($this->generateUrl('asu_stack_stacker_details', array('stacker' => $win->getStacker()->getId())));
         } else if (count($form->getErrors()) > 0) {
             // Errors exist on the form so display them as a flash message
             foreach ($form->getErrors() as $error) {
@@ -131,7 +131,7 @@ class WinController extends Controller {
 
         // Redirect to the details page of the Win
         if ($win->getStacker() != null) {
-            return $this->redirect($this->generateUrl('asu_stack_win_list', array('stacker' => $win->getStacker()->getId())));
+            return $this->redirect($this->generateUrl('asu_stack_stacker_details', array('stacker' => $win->getStacker()->getId())));
         } else if ($win->getTeam() != null) {
             return $this->redirect($this->generateUrl('asu_stack_team_details', array('team' => $win->getTeam()->getId())));
         }

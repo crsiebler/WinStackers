@@ -35,12 +35,12 @@
                             <tr>
                                 <td>{{ stacker.username }}</td>
                                 <td>
+                                    <a href="{{ path('asu_stack_stacker_details', { 'stacker': stacker.id }) }}" class="button button-basic button-small">Details</a>
                                 {% if stacker in app.user.friends %}
                                     <a href="{{ path('asu_stack_stacker_removefriend', { 'stacker': stacker.id }) }}" class="button button-basic-red button-small">Remove Friend</a>
                                 {% else %}
                                     <a href="{{ path('asu_stack_stacker_addfriend', { 'stacker': stacker.id }) }}" class="button button-basic-green button-small">Add Friend</a>
                                 {% endif %}
-                                    <a href="{{ path('asu_stack_stacker_details', { 'stacker': stacker.id }) }}" class="button button-basic button-small">Details</a>
                                 </td>
                             </tr>
                         {% else %}

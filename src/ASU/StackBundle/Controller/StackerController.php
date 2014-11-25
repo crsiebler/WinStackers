@@ -54,7 +54,7 @@ class StackerController extends Controller {
      * @Method({"GET", "POST"})
      * @Template()
      */
-    public function createAction(Request $request, Stacker $stacker = null) {
+    public function createAction(Request $request, $stacker = null) {
         // Check if the stacker is set
         if (!isset($stacker)) {
             // Grab the entitiy manager

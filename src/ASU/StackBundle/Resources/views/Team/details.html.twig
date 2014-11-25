@@ -32,9 +32,6 @@
                             {% if team.creator.id == app.user.id %}
                                 <div class="btn-group">
                                     <a href="{{ path('asu_stack_team_update', { 'team': team.id }) }}" class="button button-basic-blue button-icon icon-edit" rel="tooltip" title data-original-title="Edit"></a>
-                                    {#
-                                    <a href="{{ path('asu_stack_team_disable', { 'team': team.id }) }}" class="button button-basic-red button-icon icon-trash" rel="tooltip" title data-original-title="Delete"></a>
-                                    #}
                                 </div>
                             {% endif %}
                             {% if app.user in team.members %}
@@ -137,11 +134,11 @@
                                 <td>{{ win.getCategory(true) }}</td>
                                 <td>{{ (win.dateCreated is not null) ? win.dateCreated|date('Y-m-d') }}</td>
                                 <td>
-                                {% if app.user in team.members %}
-                                    <a href="{{ path('asu_stack_win_complete', { 'win': win.id }) }}" class="button button-basic-green button-small">Complete</a>
-                                    <a href="{{ path('asu_stack_win_update', { 'win': win.id }) }}" class="button button-basic-blue button-small">Edit</a>
-                                {% endif %}
                                     <a href="{{ path('asu_stack_win_details', { 'win': win.id }) }}" class="button button-basic button-small">Details</a>
+                                {% if app.user in team.members %}
+                                    <a href="{{ path('asu_stack_win_update', { 'win': win.id }) }}" class="button button-basic-blue button-small">Edit</a>
+                                    <a href="{{ path('asu_stack_win_complete', { 'win': win.id }) }}" class="button button-basic-green button-small">Complete</a>
+                                {% endif %}
                                 </td>
                             </tr>
                         {% else %}
@@ -182,10 +179,10 @@
                                 <td>{{ (win.dateCreated is not null) ? win.dateCreated|date('Y-m-d') }}</td>
                                 <td>{{ win.dateCompleted|date('Y-m-d') }}</td>
                                 <td>
+                                    <a href="{{ path('asu_stack_win_details', { 'win': win.id }) }}" class="button button-basic button-small">Details</a>
                                 {% if app.user in team.members %}
                                     <a href="{{ path('asu_stack_win_update', { 'win': win.id }) }}" class="button button-basic-blue button-small">Edit</a>
                                 {% endif %}
-                                    <a href="{{ path('asu_stack_win_details', { 'win': win.id }) }}" class="button button-basic button-small">Details</a>
                                 </td>
                             </tr>
                         {% else %}

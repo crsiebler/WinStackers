@@ -58,7 +58,7 @@ class TeamController extends Controller {
      * @Method({"GET", "POST"})
      * @Template()
      */
-    public function createAction(Request $request, Team $team = null) {
+    public function createAction(Request $request, $team = null) {
         // Grab the logged in user
         $stacker = $this->get('security.context')->getToken()->getUser();
         
@@ -141,7 +141,7 @@ class TeamController extends Controller {
      * @Method({"GET", "POST"})
      * @Template("ASUStackBundle:Win:create.html.twig")
      */
-    public function createWinAction(Request $request, Team $team, Win $win = null) {
+    public function createWinAction(Request $request, Team $team, $win = null) {
         // Check if the win is set
         if (!isset($win)) {
             // Initialize a new Win
@@ -164,8 +164,8 @@ class TeamController extends Controller {
             // Display a notification
             $this->get('session')->getFlashBag()->add('success', "Win added successfully");
 
-            // Redirect to the details page of the new Loan
-            return $this->redirect($this->generateUrl('asu_stack_win_details', array('win' => $win->getId())));
+            // Redirect to the details page of the Team
+            return $this->redirect($this->generateUrl('asu_stack_team_details', array('team' => $win->getTeam()->getId())));
         } else if (count($form->getErrors()) > 0) {
             // Errors exist on the form so display them as a flash message
             foreach ($form->getErrors() as $error) {

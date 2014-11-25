@@ -68,7 +68,9 @@
                                     <div class="right-details">
                                         {% if app.user != "" %}
                                             <h6>Logged in as</h6>
-                                            <span class="name">{{ app.user }}</span>
+                                            <span class="name">
+                                                <a href="{{ path('asu_stack_stacker_details', { 'stacker': app.user.id }) }}">{{ app.user }}</a>
+                                            </span>
                                             <span class="email">{{ app.user.email }}</span>
                                             <ul>
                                                 <li>

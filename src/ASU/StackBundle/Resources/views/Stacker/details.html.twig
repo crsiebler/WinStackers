@@ -26,6 +26,20 @@
                 <div class="box-head">Stacker Information</div>
                 <div class="box-body box-body-nopadding">
                 {% block toolbar %}
+                    <div class="highlight-toolbar">
+                        <div class="pull-left">
+                            <div class="btn-toolbar">
+                            {% if stacker.id == app.user.id %}
+                                <div class="btn-group">
+                                    <a href="{{ path('asu_stack_stacker_update', { 'stacker': stacker.id }) }}" class="button button-basic-blue button-icon icon-edit" rel="tooltip" title data-original-title="Edit"></a>
+                                </div>
+                                <div class="btn-group">
+                                    <a href="{{ path('asu_stack_win_create', { 'stacker': stacker.id }) }}" class="button button-basic button-icon icon-trophy" rel="tooltip" title data-original-title="Add Win"></a>
+                                </div>
+                            {% endif %}
+                            </div>
+                        </div>
+                    </div>
                 {% endblock %}
                     <table class="table table-nomargin">
                         <thead>
@@ -124,11 +138,11 @@
                                 <td>{{ win.getCategory(true) }}</td>
                                 <td>{{ (win.dateCreated is not null) ? win.dateCreated|date('Y-m-d') }}</td>
                                 <td>
-                                {% if app.user == stacker %}
-                                    <a href="{{ path('asu_stack_win_complete', { 'win': win.id }) }}" class="button button-basic-green button-small">Complete</a>
-                                    <a href="{{ path('asu_stack_win_update', { 'win': win.id }) }}" class="button button-basic-blue button-small">Edit</a>
-                                {% endif %}
                                     <a href="{{ path('asu_stack_win_details', { 'win': win.id }) }}" class="button button-basic button-small">Details</a>
+                                {% if app.user == stacker %}
+                                    <a href="{{ path('asu_stack_win_update', { 'win': win.id }) }}" class="button button-basic-blue button-small">Edit</a>
+                                    <a href="{{ path('asu_stack_win_complete', { 'win': win.id }) }}" class="button button-basic-green button-small">Complete</a>
+                                {% endif %}
                                 </td>
                             </tr>
                         {% else %}
@@ -169,10 +183,10 @@
                                 <td>{{ (win.dateCreated is not null) ? win.dateCreated|date('Y-m-d') }}</td>
                                 <td>{{ win.dateCompleted|date('Y-m-d') }}</td>
                                 <td>
+                                    <a href="{{ path('asu_stack_win_details', { 'win': win.id }) }}" class="button button-basic button-small">Details</a>
                                 {% if app.user == stacker %}
                                     <a href="{{ path('asu_stack_win_update', { 'win': win.id }) }}" class="button button-basic-blue button-small">Edit</a>
                                 {% endif %}
-                                    <a href="{{ path('asu_stack_win_details', { 'win': win.id }) }}" class="button button-basic button-small">Details</a>
                                 </td>
                             </tr>
                         {% else %}
