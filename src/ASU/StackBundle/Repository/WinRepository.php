@@ -37,6 +37,39 @@ class WinRepository extends EntityRepository {
                 return false;
         }
     }
+    
+    /**
+     * Count all the Stacker's wins
+     * 
+     * @param Stacker $stacker
+     * @return integer quantity of the wins
+     */    
+    public function getWinCount($stacker) {
+        $qb = $this->createQueryBuilder('w')
+                ->select('COUNT(w)')
+                ->where('w.stacker = :stacker')
+                ->setParameter('stacker', $stacker);
+
+        return $qb->getQuery()->getSingleScalarResult();
+    }
+    
+    /**
+     * Count all the Stacker's wins by category
+     * 
+     * @param Stacker $stacker
+     * @param const $category
+     * @return integer
+     */
+    public function getWinCountByCategory($stacker, $category) {
+        $qb = $this->createQueryBuilder('w')
+                ->select('COUNT(w)')
+                ->where('w.stacker = :stacker')
+                ->andWhere('w.category = :category')
+                ->setParameter('stacker', $stacker)
+                ->setParameter('category', $category);
+
+        return $qb->getQuery()->getSingleScalarResult();
+    }
 
     /**
      * Count all the Stacker's completed wins
@@ -47,7 +80,7 @@ class WinRepository extends EntityRepository {
     public function getCompletedWinCount($stacker) {
         $qb = $this->createQueryBuilder('w')
                 ->select('COUNT(w)')
-                ->where('w.stacker == :stacker')
+                ->where('w.stacker = :stacker')
                 ->andWhere('w.dateCompleted IS NOT NULL')
                 ->setParameter('stacker', $stacker);
 
@@ -63,7 +96,7 @@ class WinRepository extends EntityRepository {
     public function getIncompleteWinCount($stacker) {
         $qb = $this->createQueryBuilder('w')
                 ->select('COUNT(w)')
-                ->where('w.stacker == :stacker')
+                ->where('w.stacker = :stacker')
                 ->andWhere('w.dateCompleted IS NULL')
                 ->setParameter('stacker', $stacker);
 
@@ -76,11 +109,27 @@ class WinRepository extends EntityRepository {
      * @param Stacker $stacker
      * @return integer
      */
-    public function getXP($stacker) {
+    public function getEarnedXP($stacker) {
         $qb = $this->createQueryBuilder('w')
                 ->select('SUM(w.xp)')
-                ->where('w.stacker == :stacker')
+                ->where('w.stacker = :stacker')
                 ->andWhere('w.dateCompleted IS NOT NULL')
+                ->setParameter('stacker', $stacker);
+        
+        return $qb->getQuery()->getSingleScalarResult();
+    }
+    
+    /**
+     * Sum up all the XP for a Stacker's incomplete wins.
+     * 
+     * @param Stacker $stacker
+     * @return integer
+     */
+    public function getUnearnedXP($stacker) {
+        $qb = $this->createQueryBuilder('w')
+                ->select('SUM(w.xp)')
+                ->where('w.stacker = :stacker')
+                ->andWhere('w.dateCompleted IS NULL')
                 ->setParameter('stacker', $stacker);
         
         return $qb->getQuery()->getSingleScalarResult();
