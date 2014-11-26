@@ -12,4 +12,78 @@ use Doctrine\ORM\EntityRepository;
  */
 class WinRepository extends EntityRepository {
     
+    use \ASU\AssetBundle\Traits\SearchableTrait;
+
+    /**
+     * @return array of fields as strings
+     */
+    public function getSearchableFields() {
+        return array(
+            'title',
+        );
+    }
+
+    /**
+     * Modifies the search term to suite the field's requirements.
+     * 
+     * @param string $field
+     * @param string $term
+     */
+    public function normalize($field, $term) {
+        switch ($field) {
+            case 'title':
+                return array($term);
+            default:
+                return false;
+        }
+    }
+
+    /**
+     * Count all the Stacker's completed wins
+     * 
+     * @param Stacker $stacker
+     * @return integer quantity of the completed wins
+     */    
+    public function getCompletedWinCount($stacker) {
+        $qb = $this->createQueryBuilder('w')
+                ->select('COUNT(w)')
+                ->where('w.stacker == :stacker')
+                ->andWhere('w.dateCompleted IS NOT NULL')
+                ->setParameter('stacker', $stacker);
+
+        return $qb->getQuery()->getSingleScalarResult();
+    }
+    
+    /**
+     * Count all the Stacker's incomplete wins
+     * 
+     * @param Stacker $stacker
+     * @return integer quantity of the incomplete wins
+     */    
+    public function getIncompleteWinCount($stacker) {
+        $qb = $this->createQueryBuilder('w')
+                ->select('COUNT(w)')
+                ->where('w.stacker == :stacker')
+                ->andWhere('w.dateCompleted IS NULL')
+                ->setParameter('stacker', $stacker);
+
+        return $qb->getQuery()->getSingleScalarResult();
+    }
+    
+    /**
+     * Sum up all the XP for a Stacker's completed wins.
+     * 
+     * @param Stacker $stacker
+     * @return integer
+     */
+    public function getXP($stacker) {
+        $qb = $this->createQueryBuilder('w')
+                ->select('SUM(w.xp)')
+                ->where('w.stacker == :stacker')
+                ->andWhere('w.dateCompleted IS NOT NULL')
+                ->setParameter('stacker', $stacker);
+        
+        return $qb->getQuery()->getSingleScalarResult();
+    }
+    
 }

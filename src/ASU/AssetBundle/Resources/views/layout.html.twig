@@ -44,14 +44,6 @@
                             <a href="{{ path('asu_asset_default_index') }}" id="brand">
                                 <img src="{{ asset('bundles/asuasset/images/stacker.png') }}" class="logo-top-bar" />Win Stacking
                             </a>
-                            {#
-                            <div class="collapse-me">
-                                <a href="mailto:cory.siebler@gmail.com?subject=Issue Found on Win Stacking Application" class="button">
-                                    <i class="icon-comment icon-white"></i>
-                                    Report an Issue
-                                </a>
-                            </div>
-                            #}
                         </div>
                         <div class="pull-right">
                             <div class="btn-group">
@@ -76,18 +68,6 @@
                                                 <li>
                                                     <a href="{{ path("logout") }}">Logout</a>
                                                 </li>
-                                                {#
-                                                {% if is_granted("ROLE_SUPER_ADMIN") %}
-                                                    <li>
-                                                        <a href="{{ app.request.requestUri }}?_switch_user=b6d9748b63aae3706f181749789d936b">Admin</a>
-                                                    </li>
-                                                {% endif %}
-                                                {% if is_granted("ROLE_PREVIOUS_ADMIN") %}
-                                                    <li>
-                                                        <a href="{{ app.request.requestUri }}?_switch_user=_exit">Exit Impersonation</a>
-                                                    </li> 
-                                                {% endif %}
-                                                #}
                                             </ul>
                                         {% else %}
                                             <h6>Not Logged in</h6>
@@ -111,12 +91,10 @@
                     <div id="navigation">
                         {% if app.user is not null %}
                             <div class="search">
-                                {#
                                 <i class="icon-search icon-white"></i>
-                                <form action="{{ path("search_results") }}" method="post">
+                                <form action="{{ path("asu_asset_search_results") }}" method="post">
                                     <input type="text" name="searchTerm" placeholder="Search here" />
                                 </form>
-                                #}
                             </div>
                             {% include "ASUAssetBundle::navigation.html.twig" %}
                         {% endif %}

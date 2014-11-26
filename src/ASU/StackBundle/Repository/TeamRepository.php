@@ -12,4 +12,30 @@ use Doctrine\ORM\EntityRepository;
  */
 class TeamRepository extends EntityRepository {
     
+    use \ASU\AssetBundle\Traits\SearchableTrait;
+
+    /**
+     * @return array of fields as strings
+     */
+    public function getSearchableFields() {
+        return array(
+            'name',
+        );
+    }
+
+    /**
+     * Modifies the search term to suite the field's requirements.
+     * 
+     * @param string $field
+     * @param string $term
+     */
+    public function normalize($field, $term) {
+        switch ($field) {
+            case 'name':
+                return array($term);
+            default:
+                return false;
+        }
+    }
+    
 }

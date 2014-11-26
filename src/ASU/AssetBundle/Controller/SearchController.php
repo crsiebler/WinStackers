@@ -13,12 +13,14 @@ use Symfony\Component\HttpFoundation\Request;
 class SearchController extends Controller {
 
     /**
-     * @Route("/results", name="search_results")
+     * @Route("/results")
      * @Template()
      */
     public function resultsAction(Request $request) {
         // Declare the arrays to store the search results
-        
+        $stackers = array();
+        $teams = array();
+        $wins = array();
         
         // Grab the Entity Manager
         $em = $this->getDoctrine()->getManager();
@@ -29,7 +31,9 @@ class SearchController extends Controller {
         // Make sure search term is set
         if (isset($searchTerm) && strlen($searchTerm) > 0) {
             // Search the entities for the term
-            
+            $stackers = $em->getRepository('ASUStackBundle:Stacker')->search($searchTerm);
+            $teams = $em->getRepository('ASUStackBundle:Team')->search($searchTerm);
+            $wins = $em->getRepository('ASUStackBundle:Win')->search($searchTerm);
         } else {
             // Invalid input, display error message
             $this->get('session')->getFlashBag()->add('error', "Search term not provided");
@@ -37,6 +41,9 @@ class SearchController extends Controller {
         
         return array(
             'term' => $searchTerm,
+            'stackers' => $stackers,
+            'teams' => $teams,
+            'wins' => $wins,
         );
     }
 
