@@ -34,7 +34,7 @@
                     XP Earned
                 </div>
                 <div class="box-body" style="font-weight: bold; font-size: 21pt; text-align: center;">
-                    {{ earnedXP }}
+                    {{ (earnedXP is not null) ? earnedXP:0 }}
                 </div>
             </div>
         </div>
@@ -44,7 +44,7 @@
                     XP Available
                 </div>
                 <div class="box-body" style="font-weight: bold; font-size: 21pt; text-align: center;">
-                    {{ unearnedXP }}
+                    {{ (unearnedXP is not null) ? unearnedXP:0 }}
                 </div>
             </div>
         </div>
@@ -54,7 +54,7 @@
                     XP Per Day
                 </div>
                 <div class="box-body" style="font-weight: bold; font-size: 21pt; text-align: center;">
-                    {{ earnedXP/daysActive|number_format(0) }}
+                    {{ (earnedXP/daysActive)|number_format(0) }}
                 </div>
             </div>
         </div>
