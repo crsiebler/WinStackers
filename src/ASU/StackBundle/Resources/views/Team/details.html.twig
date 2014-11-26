@@ -95,7 +95,7 @@
                         {% for member in team.members %}
                             <tr>
                                 <td>
-                                    <a href="">{{ member }}</a>
+                                    <a href="{{ path('asu_stack_stacker_details', { 'stacker': member.id }) }}">{{ member }}</a>
                                 </td>
                             </tr>
                         {% else %}

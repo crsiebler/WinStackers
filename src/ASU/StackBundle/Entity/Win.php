@@ -47,7 +47,7 @@ class Win {
     /**
      * @var integer
      *
-     * @ORM\Column(name="xp", type="smallint", nullable=false)
+     * @ORM\Column(name="xp", type="integer", nullable=false)
      */
     private $xp;
 
